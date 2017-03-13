@@ -20,7 +20,7 @@ mongoose.connection.on('error',function (err) {
 
 const app = express();
 
-//const users = require('./routes/users');
+const apiCategory = require('./routes/category');
 const port = 4242;
 
 // view engine setup
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 // ROUTES FOR OUR API
 app.use('/', require('./routes'));
-//app.use('/users',users);
+app.use('/category',apiCategory);
 app.use(express.static(path.join(__dirname,'public')));
 
 //Start server

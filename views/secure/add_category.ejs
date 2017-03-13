@@ -36,35 +36,21 @@ START SITE HERE
             <div class="container-fluid">
                 <div class="text-center">
                     <div class="widget-title">
-                        <h2 class="text-center edu-green"><strong>Write your blog post.</strong></h2>
+                        <h2 class="text-center edu-green"><strong>Manage blog category.</strong></h2>
                     </div><!-- end title -->
                 </div><!-- end title -->
                 <div class="row">
                     <div id="msg"></div>
                     <div class="col-md-12">
-                        <form id= "uploadForm" enctype="multipart/form-data" action="/cms/uploadImg" method="post" >
-                            <div class="form-group">
-                                <label for="title">Featured Image</label>
-                            </div>
-                            <input type="file" name="featuredImg" />
-                            <input type="submit" name="submit" value="Upload Image">
-                            <span id = "status"></span>
-                        </form>
-
                         <form>
                             <div class="form-group">
-                                <label for="category">Choose Category:</label>
-                                <input type="text" class="form-control" id="category" placeholder="Blog post category...">
+                                <label for="categoryName">Category Name:</label>
+                                <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
                             </div>
 
                             <div class="form-group">
-                                <label for="title">Title:</label>
-                                <input type="text" class="form-control" id="title" placeholder="Enter sweet and short appealing title">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="comment">Content:</label>
-                                <textarea class="form-control" rows="5" id="editor1" name="editor1"></textarea>
+                                <label for="comment">Description:</label>
+                                <textarea class="form-control" rows="5" id="categoryDesc" placeholder="Enter short description"></textarea>
                             </div>
                             <button type="button" id="btnAddConent" class="btn btn-default">Save</button>
                         </form>
