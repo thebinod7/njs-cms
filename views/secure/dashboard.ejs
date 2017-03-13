@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title><%= title %></title>
+<% include ../common/head %>
+<script src="/js/app/pages/dashboard.js" type="text/javascript"></script>
+
+<body class="leftmenu memberprofile">
+
+<!-- PRELOADER -->
+<div class="cssload-container">
+    <div class="cssload-loader"></div>
+</div>
+<!-- end PRELOADER -->
+
+<!-- ******************************************
+START SITE HERE
+********************************************** -->
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <a class="navbar-brand with-text" title="Edushala" href="/">Node-User</a>
+        <ul class="sidebar-nav">
+            <li class="active"><a href="/dashboard">My Profile <span><i class="fa fa-user"></i></span></a></li>
+            <li><a href="#">Account Setting <span><i class="fa fa-book"></i></span></a></li>
+            <li><a href="#">Social Accounts <span><i class="fa fa-briefcase"></i></span></a></li>
+            <li><a href="/logout">Logout  <span><i class="fa fa-sign-out"></i></span></a></li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <div id="page-content-wrapper">
+        <a href="#menu-toggle" class="menuopener" id="menu-toggle"><i class="fa fa-bars"></i></a>
+        <div class="demo-parallax parallax section looking-photo nopadbot"  data-stellar-background-ratio="0.5" style="background-image:url('/img/demo_01.jpg');">
+            <div class="page-title section nobg">
+                <div class="container-fluid">
+                    <div class="clearfix">
+                        <div class="title-area pull-left">
+                            <h2>Welcome, <span id="user_fname"> John </span>  </h2>
+                        </div>
+                    </div>
+                    <!-- end clearfix -->
+                </div>
+            </div>
+            <!-- end page-title -->
+        </div>
+
+        <div class="section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="lblMsg"></div>
+                    <div class="col-md-7 col-sm-12">
+                        <div class="about-widget clearfix">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="text-center">
+                                        <img src="/img/avatar.png" alt="team member img" class="img-responsive">
+                                        <br>
+                                        <a href="#" id="btnGetCode">Change Picture</a>
+                                    </div>
+                                </div><!-- end col -->
+
+                                <div class="col-md-9 col-sm-12">
+                                    <div class="team-member-name">
+                                        <p id="userFullName">John Doe</p>
+                                        <!-- <span>Student</span> -->
+                                    </div>
+                                    <div class="space-top-small"></div>
+                                    <h3 class="edu-green">Welcome to Node-User,</h3>
+
+                                    <p>Please take a tour of the system and drop your feedback or suggestions at email listed in footer below.</p>
+
+                                    <p>Happy Learning!!!</p>
+
+                                    <hr class="invis">
+
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+                    <div class="col-md-5 col-sm-12 m30">
+                        <div class="about-widget clearfix">
+                            <div class="widget-title">
+                                <h3>Update Profile</h3>
+                                <hr>
+                                <div id="msg"></div>
+                            </div><!-- end title -->
+
+                            <div class="defaultform">
+                                <form class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" id="email" disabled="disabled" class="form-control" placeholder="email">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" id="fname" class="form-control" placeholder="Firstname">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text"  id="lname" class="form-control" placeholder="Lastname">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text"  id="phone" class="form-control" placeholder="Phone">
+                                    </div>
+                                    <div class="col-md-12 clearfix">
+                                        <button type="button" id="btnUpdate" class="btn btn-default"> Update</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div><!-- end about-widget -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end section -->
+
+        <div class="modal fade" id="changePassword" role="dialog" style="margin-top: 150px;">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Change Password</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="row">
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div id="change_pass_msg"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="full_name">Password:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="pwd" placeholder="Enter a strong password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="phone">Confirm:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnChangePassword" class="btn btn-default">Change</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <% include ../common/footer %>
+
+        <!-- end copyrights -->
+        <!-- end copyrights -->
+    </div>
+    <!-- end page-content-wrapper -->
+</div>
+<!-- end wrapper -->
+
+<!-- ******************************************
+/END SITE
+********************************************** -->
+
+<!-- ******************************************
+DEFAULT JAVASCRIPT FILES
+********************************************** -->
+<script src="js/all.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+
+<!-- Mirrored from psdconverthtml.com/live/edupress/member-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2016 05:20:04 GMT -->
+</html>

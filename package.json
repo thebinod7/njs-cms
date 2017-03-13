@@ -1,0 +1,31 @@
+{
+  "name": "njs-user",
+  "version": "1.0.0",
+  "description": "User auth",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "*",
+    "ejs": "*",
+    "express": "*",
+    "express-session": "^1.15.1",
+    "mongoose": "*",
+    "morgan":"*",
+    "nodemailer": "^3.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebinod7/njs-cms.git"
+  },
+  "author": "Binod Chaudhary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebinod7/njs-cms/issues"
+  },
+  "homepage": "https://github.com/thebinod7/njs-cms#readme"
+}

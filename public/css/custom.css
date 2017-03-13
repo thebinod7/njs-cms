@@ -1,0 +1,127 @@
+/******************************************
+    File Name: custom.css
+    Template Name: EduPress
+    Created By: PSD Convert HTML Team
+    Envato Profile: http://themeforest.net/user/psdconverthtml
+    Website: https://psdconverthtml.com
+    Version: 1.0
+    Support: support@psdconverthtml.com
+/******************************************/
+
+/******************************************
+    ADD YOUR AWESOME CUSTOM STYLES HERE...
+******************************************/
+
+a {
+    color:#27ae60;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    text-decoration: none;
+}
+
+.logo img {
+    max-height: 56px;
+    margin: 2px 0 -4px 0;
+}
+
+.check > li > a:hover {
+    text-decoration: none;
+}
+
+div.bbp-template-notice a, .related-posts .entry small, .notfound p a, blockquote .small, blockquote footer, blockquote small, .course-table .fa-question-circle, .course-table .fa-play-circle, .video-wrapper .widget-title .btn-inverse, .awards small, .colorized h3, .team-member-name span, .service-style2 h3, .conecourse hr.customhr::before, .custom_fact_item h6, .blog-wrapper .blog-meta a i, .check li .fa-circle-o, .service-list span, .about-widget span, .yamm-content li:hover a, .copyrights p a, .testibox small a, a:hover, a:focus, .fa-heart, .copyrights li:hover a {
+    color: #5cb85c !important;
+}
+
+.space-box {
+ margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.space-top {
+    margin-top:100px;
+}
+
+.space-top-small {
+    margin-top:50px;
+}
+
+.team-member-img {
+    width:241px;
+    height: 246px;
+    overflow: hidden;
+}
+
+.portfolio-thumb {
+    width: 328px;
+    height: 287px;
+    overflow: hidden;
+}
+
+.portfolio-carousel {
+    width: 50%;
+    float: right;
+    padding: 20px;
+    margin-left: 20px;
+}
+.team-member {
+    min-height: 500px;
+}
+
+.normal-header.affix {
+    background-color: #666666 !important;
+}
+.course-catalog  {
+    width:100%;
+    height: 290px;
+    overflow: hidden;
+}
+.intro-edu {
+    color: #ffffff !important;
+    font-size: 17px !important;
+}
+ .course-widget {
+    padding: 0px;
+}
+ .edu-box {
+      padding:10px;
+  }
+.course-detail-box {
+    padding:15px;
+}
+.modal-header {
+    background: #82af6f;
+    border-color: #82af6f;
+}
+.modal-title {
+    color: #ffffff;
+}
+.edu-green {
+    color: #69aa46!important;
+}
+body {
+    font-size: 15px;
+}
+.edu-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+.lead {
+    font-style: normal;
+}
+.onecourse {
+    padding: 60px 0 !important;
+}
+.contact-heading {
+    margin-bottom: 20px;
+}
+
+.demo-parallax.onecourse, .demo-parallax {
+    padding: 20rem 0 15rem !important;
+}
+
+.semitrans.section-signup .form-control {
+    text-transform:none;
+}
