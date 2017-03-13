@@ -51,4 +51,23 @@ router.delete('/:id',function (req,res) {
     });
 });
 
+/* router.post('/:id',function (req,res) {
+    Content.findById(req.params.id, function (err, doc) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            doc.title = req.body.title || doc.title;
+            doc.seoUrl = req.body.seoUrl || doc.seoUrl;
+            doc.blogContent = req.body.blogContent || doc.blogContent;
+
+            doc.save(function (err, data) {
+                if (err) {
+                    res.status(500).send(err)
+                }
+                res.json({success:true,result:data});
+            })
+        }
+    });
+}); */
+
 module.exports = router;
