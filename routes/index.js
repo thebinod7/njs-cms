@@ -25,7 +25,17 @@ router.get('/new_post',function (req,res) {
 });
 
 router.get('/add_category',function (req,res) {
-    res.render('secure/add_category');
+    Category.find({}, function(err, doc) {
+        if(err){
+            res.json({success : false, msg : 'Failed to list!'});
+        } else {
+            var data = {
+                cat:doc
+            }
+            res.render('secure/add_category',data);
+            //res.json({success:true,msg:'Success',result:doc})
+        }
+    });
 });
 
 module.exports = router;

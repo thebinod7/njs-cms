@@ -36,7 +36,7 @@ START SITE HERE
             <div class="container-fluid">
                 <div class="text-center">
                     <div class="widget-title">
-                        <h2 class="text-center edu-green"><strong>Manage blog category.</strong></h2>
+                        <h2 class="text-center edu-green"><strong>Add category.</strong></h2>
                     </div><!-- end title -->
                 </div><!-- end title -->
                 <div class="row">
@@ -54,6 +54,37 @@ START SITE HERE
                             </div>
                             <button type="button" id="btnAddCategory" class="btn btn-default">Save</button>
                         </form>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="widget-title">
+                        <h2 class="text-center edu-green"><strong>Category List.</strong></h2>
+                    </div><!-- end title -->
+                </div><!-- end title -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="mytable" class="table table-bordred table-striped">
+                            <thead>
+                            <th>#Id</th>
+                            <th>Category Name</th>
+                            <th>Description</th>
+                            <th>Delete</th>
+                            </thead>
+                            <tbody>
+                            <% for(var i=0; i<cat.length; i++) { %>
+                            <tr>
+
+                                <td><%= cat[i].id%></td>
+                                <td><%= cat[i].categoryName%></td>
+                                <td><%= cat[i].categoryDesc%></td>
+                                <td><a href="<%= cat[i].id%>"><button class="btn btn-primary btn-xs" data-title="Delete"><span class="glyphicon glyphicon-remove-circle"></span></button></a></td>
+
+                            </tr>
+                            <% }%>
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
             </div><!-- end container -->
