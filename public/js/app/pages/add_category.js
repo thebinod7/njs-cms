@@ -32,7 +32,36 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#btnDeleteCategory').on("click",function () {
+        deleteCategory();
+    });
 });
+
+function deleteCategory() {
+    var r = confirm("Attention! deleted category cant be recovered");
+    if (r == true) {
+        $.ajax({
+            method: 'DELETE',
+            url: '/category/' + id,
+            success: function (data) {
+                console.log(data);
+                if(data.msg != null){
+                    $( "#msg" ).html( '<div class="alert alert-success"><p class="text-danger"><strong>Category deleted successfully!</strong></p></div>' );
+                }
+                else {
+                    $( "#msg" ).html( '<div class="alert alert-success"><p class="text-danger"><strong>Oops something went wrong, Please try again!</strong></p></div>' );
+                }
+            },
+            error: function(err) {
+                console.log(err);
+                $( "#msg" ).html( '<div class="alert alert-success"><p class="text-danger"><strong>Oops something went wrong, Please try again!</strong></p></div>' );
+            }
+        });
+    } else {
+        return;
+    }
+}
 
 function clearForm() {
     $('#categoryName').val('');
