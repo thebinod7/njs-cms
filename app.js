@@ -42,7 +42,8 @@ app.use(bodyParser.json());
 app.use('/', require('./routes'));
 app.use('/category',apiCategory);
 app.use('/post',apiPost);
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'images/uploads')));
 
 //Start server
 app.listen(port,function () {

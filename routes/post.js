@@ -2,7 +2,26 @@ const express = require('express');
 const  router = express.Router();
 const config = require('../config/database');
 const Post = require('../models/post');
+var multer  = require('multer');
 
+
+
+var storage = multer.diskStorage({
+    destination: './public/images/uploads/',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+    }
+})
+
+var upload = multer({ storage: storage });
+
+router.post('/uploadImg', upload.single('featuredImg'), function(req, res, next) {
+    // res.redirect('/add_content');
+    res.json({
+        error: false,
+        result: req.file.filename
+    });
+});
 
 router.post('/add',function (req,res) {
     var newPost = new Post({
