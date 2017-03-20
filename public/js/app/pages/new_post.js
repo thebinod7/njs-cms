@@ -2,6 +2,7 @@ $(document).ready(function() {
     var featuredImgName;
     $('#uploadForm').submit(function () {
         $("#status").empty().text("File is uploading...");
+
         $(this).ajaxSubmit({
             error: function (xhr) {
                 status('Error: ' + xhr.status);
@@ -10,11 +11,27 @@ $(document).ready(function() {
                 $("#status").empty().text('File Uploaded Successfully.');
                 featuredImgName = response.result;
                 console.log('file name:' + featuredImgName);
+
             }
         });
-        //Very important line, it disable the page refresh.
         return false;
     });
+
+   /* $('form.uploadForm').submit(function(event) {
+        event.preventDefault();
+        var form = $(this);
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize()
+        }).done(function(data) {
+            console.log(data);
+            // Optionally alert the user of success here...
+        }).fail(function(data) {
+            // Optionally alert the user of an error here...
+        });
+       // Prevent the form from submitting via the browser
+    }); */
 
     $('#btnAddConent').on("click", function () {
         var category = $('#post_category').val();

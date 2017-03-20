@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 
 
 //Body parser middleware
-// parse application/x-www-form-urlencoded
+// parse application/x-www-form-urlencoded.
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -43,7 +43,7 @@ app.use('/', require('./routes'));
 app.use('/category',apiCategory);
 app.use('/post',apiPost);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'images/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'img/uploads')));
 
 //Start server
 app.listen(port,function () {
