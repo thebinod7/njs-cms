@@ -25,8 +25,10 @@ router.post('/uploadImg', upload.single('featuredImg'), function(req, res, next)
 
 router.post('/add',function (req,res) {
     var newPost = new Post({
+        featuredImgUrl : req.body.featuredImgUrl,
         category : req.body.category,
         title : req.body.title,
+        seoUrl : req.body.seoUrl,
         content : req.body.content
     });
     newPost.save(function (err,doc) {

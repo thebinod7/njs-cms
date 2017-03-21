@@ -10,39 +10,55 @@ $(document).ready(function() {
             success: function (response) {
                 $("#status").empty().text('File Uploaded Successfully.');
                 featuredImgName = response.result;
-                console.log('file name:' + featuredImgName);
+               // console.log('file name:' + featuredImgName);
 
             }
         });
         return false;
     });
 
-   /* $('form.uploadForm').submit(function(event) {
-        event.preventDefault();
-        var form = $(this);
-        $.ajax({
-            type: form.attr('method'),
-            url: form.attr('action'),
-            data: form.serialize()
-        }).done(function(data) {
-            console.log(data);
-            // Optionally alert the user of success here...
-        }).fail(function(data) {
-            // Optionally alert the user of an error here...
-        });
-       // Prevent the form from submitting via the browser
-    }); */
-
     $('#btnAddConent').on("click", function () {
+        var featuredImgUrl = featuredImgName;
+        var content = CKEDITOR.instances.editor1.getData();
         var category = $('#post_category').val();
         var title = $('#title').val();
         title = title.toLowerCase().replace(/ /g, '-');
         var seoUrl = title;
-        console.log(seoUrl);
-        console.log(category);
-        if(category == 0){
-            $('#msg').html('<p class="alert alert-danger"><strong>Please select category of post!</strong></p>');
+        if(category == 0 || title == ''){
+            $('#msg').html('<p class="alert alert-danger"><strong>Please select category and enter title of post!</strong></p>');
             return;
+        }
+        else {
+            var model = {
+                featuredImgUrl : featuredImgUrl,
+                category : category,
+                title: title,
+                seoUrl : seoUrl,
+                content : content
+            };
+            $.ajax({
+                method: 'POST',
+                data: model,
+                url: 'post/add',
+                success: function (data) {
+                    if(data.result){
+                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>Post created successfully!</strong></p></div>' );
+                        clearForm();
+                    }
+                    else {
+                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-danger"><strong>Something went wrong, Tyr again!!!</strong></p></div>' );
+                    }
+                },
+                error: function(err) {
+                    $( "#msg" ).html( '<div class="alert alert-success"><p class="text-danger"><strong>Something went wrong, Tyr again!!!</strong></p></div>' );
+                }
+            });
         }
     });
 });
+
+function clearForm() {
+    $("#post_category").val($("#post_category option:first").val());
+    $('#title').val('');
+    CKEDITOR.instances.editor1.setData('');
+}

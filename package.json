@@ -17,6 +17,7 @@
     "mongoose": "*",
     "morgan":"*",
     "multer":"*",
+    "nodemon":"*",
     "nodemailer": "^3.1.4"
   },
   "repository": {

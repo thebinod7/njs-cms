@@ -4,9 +4,15 @@ const config = require('../config/database');
 var objectId = mongoose.Schema.ObjectId;
 const postSchema = mongoose.Schema({
     postId : objectId,
+    featuredImgUrl : {
+      type : String
+    },
     title : {
         type: String,
         required : true
+    },
+    seoUrl : {
+        type : String
     },
     status : {
         type : String,
