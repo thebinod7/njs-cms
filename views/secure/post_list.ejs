@@ -23,9 +23,9 @@ START SITE HERE
         <ul class="sidebar-nav">
             <li><a href="#">Dashboard <span><i class="fa fa-user"></i></span></a></li>
             <li><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
-            <li class="active"><a href="/add_category">Add Category <span><i class="fa fa-plus"></i></span></a></li>
+            <li><a href="/add_category">Add Category <span><i class="fa fa-plus"></i></span></a></li>
             <li><a href="/new_post">New Post <span><i class="fa fa-book"></i></span></a></li>
-            <li><a href="/post_list">Blog Posts <span><i class="fa fa-briefcase"></i></span></a></li>
+            <li class="active"><a href="post_list.ejs">Blog Posts <span><i class="fa fa-briefcase"></i></span></a></li>
             <li><a href="#">Logout  <span><i class="fa fa-sign-out"></i></span></a></li>
         </ul>
     </div>
@@ -36,29 +36,7 @@ START SITE HERE
             <div class="container-fluid">
                 <div class="text-center">
                     <div class="widget-title">
-                        <h2 class="text-center edu-green"><strong>Add category.</strong></h2>
-                    </div><!-- end title -->
-                </div><!-- end title -->
-                <div class="row">
-                    <div id="msg"></div>
-                    <div class="col-md-12">
-                        <form>
-                            <div class="form-group">
-                                <label for="category">Category:</label>
-                                <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="comment">Description:</label>
-                                <textarea class="form-control" rows="5" id="categoryDesc" placeholder="Enter short description"></textarea>
-                            </div>
-                            <button type="button" id="btnAddCategory" class="btn btn-default">Save</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="widget-title">
-                        <h2 class="text-center edu-green"><strong>Category List.</strong></h2>
+                        <h2 class="text-center edu-green"><strong>Blog Post List.</strong></h2>
                     </div><!-- end title -->
                 </div><!-- end title -->
                 <hr>
@@ -67,18 +45,18 @@ START SITE HERE
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead>
                             <th>#Id</th>
-                            <th>Category Name</th>
-                            <th>Description</th>
-                            <th>Delete</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Edit</th>
                             </thead>
                             <tbody>
-                            <% for(var i=0; i<cat.length; i++) { %>
+                            <% for(var i=0; i<blog.length; i++) { %>
                             <tr>
 
-                                <td><%= cat[i].id%></td>
-                                <td><%= cat[i].categoryName%></td>
-                                <td><%= cat[i].categoryDesc%></td>
-                                <td><button id="btnDeleteCategory" class="btn btn-primary btn-xs" data-title="Delete"><span class="glyphicon glyphicon-remove-circle"></span></button></td>
+                                <td><%= blog[i].id%></td>
+                                <td><%= blog[i].title%></td>
+                                <td><%= blog[i].category ? blog[i].category.categoryName : 'Uncategorized' %></td>
+                                <td><a href="/post_list/<%= blog[i].id%>"><button class="btn btn-default btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
 
                             </tr>
                             <% }%>

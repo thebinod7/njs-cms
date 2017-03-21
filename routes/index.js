@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Category = require('../models/category');
+const Post = require('../models/post');
 
 router.get('/',function (req,res) {
     res.render('index');
@@ -36,6 +37,38 @@ router.get('/add_category',function (req,res) {
             //res.json({success:true,msg:'Success',result:doc})
         }
     });
+});
+
+router.get('/post_list',function (req,res) {
+    Post
+        .find()
+        .populate('category')
+        .exec(function (err, doc) {
+            if(err){
+                res.json({success : false, msg : 'Failed to list!'});
+            } else {
+                var data = {
+                    blog:doc
+                }
+                res.render('secure/post_list',data);
+            }
+        });
+});
+
+router.get('/post_list/:id',function (req,res) {
+    Post
+        .find()
+        .populate('category')
+        .exec(function (err, doc) {
+            if(err){
+                res.json({success : false, msg : 'Failed to list!'});
+            } else {
+                var data = {
+                    blog:doc
+                }
+                res.render('secure/post_list',data);
+            }
+        });
 });
 
 module.exports = router;

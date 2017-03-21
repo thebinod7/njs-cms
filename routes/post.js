@@ -81,7 +81,9 @@ router.post('/:id',function (req,res) {
             res.status(500).send(err);
         } else {
             doc.category = req.body.category || doc.category;
+            doc.featuredImgUrl = req.body.featuredImgUrl || doc.featuredImgUrl;
             doc.title = req.body.title || doc.title;
+            doc.seoUrl = req.body.seoUrl || doc.seoUrl;
             doc.content = req.body.content || doc.content;
 
             doc.save(function (err, data) {
