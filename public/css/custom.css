@@ -125,3 +125,7 @@ body {
 .semitrans.section-signup .form-control {
     text-transform:none;
 }
+
+.blog-wrapper {
+    margin-top: 30px;
+}

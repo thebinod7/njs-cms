@@ -9,7 +9,20 @@ var getCategory = function() {
 
 
 router.get('/',function (req,res) {
-    res.render('index');
+    Post
+        .find()
+        .populate('category')
+        .exec(function (err, doc) {
+            if(err){
+                res.json({success : false, msg : 'Failed to list!'});
+            } else {
+                var data = {
+                    blog:doc
+                }
+                console.log(data);
+                res.render('index',data);
+            }
+        });
 });
 
 router.get('/profile',function (req,res) {
