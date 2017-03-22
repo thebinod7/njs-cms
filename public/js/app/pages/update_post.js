@@ -36,6 +36,32 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#btnDeleteContent').on("click", function () {
+        var r = confirm("Attention! deleted content cant be recovered!");
+        if (r == true) {
+            $.ajax({
+                method: 'DELETE',
+                url: '/post/' + id,
+                success: function (data) {
+                    console.log(data);
+                    if(data.msg != null){
+                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>Post deleted successfully!</strong></p></div>' );
+                        clearForm();
+                    }
+                    else {
+                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>Something went wrogn, plese try again.</strong></p></div>' );
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                    $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>Something went wrogn, plese try again.</strong></p></div>' );
+                }
+            });
+        } else {
+            return;
+        }
+    });
 });
 
 function clearForm() {
