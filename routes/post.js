@@ -77,6 +77,7 @@ router.delete('/:id',function (req,res) {
 
 router.post('/:id',function (req,res) {
     Post.findById(req.params.id, function (err, doc) {
+        console.log(doc);
         if (err) {
             res.status(500).send(err);
         } else {

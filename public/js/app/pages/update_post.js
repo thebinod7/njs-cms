@@ -1,36 +1,18 @@
 $(document).ready(function() {
-    var featuredImgName;
-    $('#uploadForm').submit(function () {
-        $("#status").empty().text("File is uploading...");
-
-        $(this).ajaxSubmit({
-            error: function (xhr) {
-                status('Error: ' + xhr.status);
-            },
-            success: function (response) {
-                $("#status").empty().text('File Uploaded Successfully.');
-                featuredImgName = response.result;
-               // console.log('file name:' + featuredImgName);
-
-            }
-        });
-        return false;
-    });
-
-    $('#btnAddConent').on("click", function () {
-        var featuredImgUrl = featuredImgName;
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    $('#btnUpdateContent').on("click", function () {
         var content = CKEDITOR.instances.editor1.getData();
         var category = $('#post_category').val();
         var title = $('#title').val();
         var seoUrl = title.toLowerCase().replace(/ /g, '-');
         var seoUrl = seoUrl;
         if(category == 0 || title == ''){
-            $('#msg').html('<p class="alert alert-danger"><strong>Please select category and enter title of post!</strong></p>');
+            $('#msg').html('<p class="alert alert-danger"><strong>Please select category!</strong></p>');
             return;
         }
         else {
             var model = {
-                featuredImgUrl : featuredImgUrl,
                 category : category,
                 title: title,
                 seoUrl : seoUrl,
@@ -39,11 +21,10 @@ $(document).ready(function() {
             $.ajax({
                 method: 'POST',
                 data: model,
-                url: 'post/add',
+                url: '/post/' + id ,
                 success: function (data) {
                     if(data.result){
-                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>Post created successfully!</strong></p></div>' );
-                        clearForm();
+                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>Post updated successfully!</strong></p></div>' );
                     }
                     else {
                         $( "#msg" ).html( '<div class="alert alert-danger"><p class="text-danger"><strong>Something went wrong, Tyr again!!!</strong></p></div>' );

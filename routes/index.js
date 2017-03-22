@@ -3,6 +3,11 @@ const router = express.Router();
 const Category = require('../models/category');
 const Post = require('../models/post');
 
+var getCategory = function() {
+    return Category.find({});
+}
+
+
 router.get('/',function (req,res) {
     res.render('index');
 });
@@ -57,17 +62,20 @@ router.get('/post_list',function (req,res) {
 
 router.get('/post_list/:id',function (req,res) {
     Post
-        .find()
+        .findById(req.params.id)
         .populate('category')
         .exec(function (err, doc) {
-            if(err){
-                res.json({success : false, msg : 'Failed to list!'});
-            } else {
-                var data = {
-                    blog:doc
+            getCategory().exec(function(err, category) {
+                if(err){
+                    res.json({success : false, msg : 'Failed to list category!'});
+                } else {
+                    var data = {
+                        blog: doc,
+                        category: category
+                    }
+                    res.render('secure/update_post', data)
                 }
-                res.render('secure/post_list',data);
-            }
+            });
         });
 });
 
