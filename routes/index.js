@@ -19,7 +19,6 @@ router.get('/',function (req,res) {
                 var data = {
                     blog:doc
                 }
-                console.log(data);
                 res.render('index',data);
             }
         });

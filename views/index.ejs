@@ -35,12 +35,7 @@
                             <div class="blog-wrapper clearfix">
                                 <div class="post-media">
                                     <div class="entry">
-                                        <img src="/img/uploads/<%= i.featuredImgUrl %>" alt="" class="img-responsive">
-                                        <div class="magnifier">
-                                            <div class="magni-desc">
-                                                <a class="secondicon" href="blog-single.html"> <span class="oi" data-glyph="link-intact" title="Read More" aria-hidden="false"></span></a>
-                                            </div><!-- end team-desc -->
-                                        </div><!-- end magnifier -->
+                                       <a href="/blog_list/<%= i.id %>"><img src="/img/uploads/<%= i.featuredImgUrl %>" alt="" class="img-responsive"></a>
                                     </div>
                                 </div><!-- end media -->
                                 <div class="blog-title">
@@ -51,7 +46,11 @@
                                         </ul><!-- end list -->
                                     </div><!-- end blog-meta -->
                                     <h4><a href="/blog_list/<%= i.id %>" title=""><%= i.title %></a></h4>
-                                    <p>Easily change/switch/swap every placeholder inside every image on Sedna with the included Sketch files. You’ll have this template customised to suit your business in no time! </p>
+                                    <p>
+                                    <div class="blog-ellipsis">
+                                        <%- i.content %>
+                                    </div>
+                                    </p>
                                     <a href="/blog_list/<%=i.id%>" class="readmore" title="">Read more</a>
                                 </div><!-- end blog-title -->
                             </div><!-- end clearfix -->
