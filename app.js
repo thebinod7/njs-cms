@@ -3,6 +3,7 @@ const path = require('path');
 var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const moment = require('moment');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -19,6 +20,10 @@ mongoose.connection.on('error',function (err) {
 });
 
 const app = express();
+
+var shortDateFormat = "LL";
+app.locals.moment = moment;
+app.locals.shortDateFormat = shortDateFormat;
 
 const apiCategory = require('./routes/category');
 const apiPost = require('./routes/post');

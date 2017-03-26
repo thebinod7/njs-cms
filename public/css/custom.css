@@ -126,10 +126,6 @@ body {
     text-transform:none;
 }
 
-.blog-wrapper {
-    margin-top: 30px;
-}
-
 .blog-ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -138,4 +134,12 @@ body {
     -webkit-line-clamp: 3; /* number of lines to show */
     line-height: 28px;        /* fallback */
     max-height: 90px;       /* fallback */
+}
+
+.blog-list .col-xs-12, .blog-list .col-sm-12 {
+    margin-bottom: 60px;
+}
+
+.post-media img {
+    height: 250px;
 }

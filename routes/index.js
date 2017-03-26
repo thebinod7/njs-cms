@@ -6,6 +6,9 @@ const Post = require('../models/post');
 var getCategory = function() {
     return Category.find({});
 }
+var getLatestPosts = function() {
+    return Post.find({}).sort('-dateAdded')
+}
 
 
 router.get('/',function (req,res) {
@@ -16,10 +19,24 @@ router.get('/',function (req,res) {
             if(err){
                 res.json({success : false, msg : 'Failed to list!'});
             } else {
-                var data = {
-                    blog:doc
-                }
-                res.render('index',data);
+                getLatestPosts().sort('-dateAdded').exec(function(err, latestArticles) {
+                    if(err){
+                        res.json({success : false, msg : 'Failed to list content!'});
+                    } else {
+                        getCategory().exec(function(err, category) {
+                            if(err){
+                                res.json({success : false, msg : 'Failed to list category!'});
+                            } else {
+                                var data = {
+                                    blog: doc,
+                                    category: category,
+                                    articles: latestArticles
+                                }
+                                res.render('index', data)
+                            }
+                        });
+                    }
+                });
             }
         });
 });
@@ -89,6 +106,26 @@ router.get('/post_list/:id',function (req,res) {
                 }
             });
         });
+});
+
+router.get('/blog/:seoUrl',function (req,res) {
+    Post
+        .findOne({ seoUrl: req.params.seoUrl })
+        .populate('category')
+        .exec(function (err, doc) {
+            if(err){
+                res.json({success : false, msg : 'Failed to list content!'});
+            } else {
+                var data = {
+                    blog: doc
+                }
+                res.render('post_details', data)
+            }
+        });
+});
+
+router.get('/postbycat',function (req,res) {
+   res.render('post_by_category');
 });
 
 module.exports = router;

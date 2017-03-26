@@ -1,0 +1,73 @@
+<html>
+<head>
+    <% include common/head %>
+    <!--additional JS and css-->
+</head>
+<body>
+<header id="header">
+    <% include common/header %>
+</header>
+
+<section id="content_body">
+    <div class="section">
+
+        <div class="container">
+            <div class="row">
+                <div class="content col-md-9 col-sm-12">
+                    <div class="post-padding">
+                        <div class="blog-big-title clearfix">
+                            <h3><%= blog.title %></h3>
+                        </div>
+
+                        <div class="blog-single-meta clearfix">
+                            <ul class="list-inline">
+                                <li><i class="fa fa-tag"></i> <a href="#" class="readmore"><%= blog.category.categoryName %></a></li>
+                                <li><i class="fa fa-clock-o"></i> <%= moment(blog.dateAdded).format(shortDateFormat) %> </li>
+                                <div class="addthis_inline_share_toolbox"></div>
+                            </ul>
+                        </div><!-- end meta -->
+
+                        <div id="content-detail">
+                            <%- blog.content %>
+                        </div>
+
+                        <hr>
+
+                    </div><!-- end post-padding -->
+
+                    <hr class="invis">
+
+                </div><!-- end content -->
+
+                <div class="sidebar col-md-3 col-sm-12">
+                    <div class="widget clearfix">
+                        <div class="widget-title">
+                            <h3>Advertise</h3>
+                        </div>
+                        <a href="#"><img src="/img/course.jpg" alt="" class="img-responsive"></a>
+                    </div>
+
+                    <div class="widget clearfix">
+                        <div class="widget-title">
+                            <h3>Related Articles</h3>
+                            <hr>
+                        </div>
+
+                    </div><!-- end widget -->
+
+                </div><!-- end col -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+
+    </div><!-- end section -->
+</section>
+
+
+<footer id="footer">
+    <% include common/footer %>
+</footer>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58b3fd01b570467a"></script>
+</body>
+</html>
