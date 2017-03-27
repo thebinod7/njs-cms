@@ -124,8 +124,18 @@ router.get('/blog/:seoUrl',function (req,res) {
         });
 });
 
-router.get('/postbycat',function (req,res) {
-   res.render('post_by_category');
+router.get('/:id',function (req,res) {
+ Post.find({'category': req.params.id}, function(err, doc) {
+        if(err){
+            console.log(err);
+            res.json({success : false, msg : 'Failed to list content!'});
+        } else {
+            var data = {
+                blog: doc
+            }
+            res.render('post_by_category');
+        }
+    });
 });
 
 module.exports = router;
