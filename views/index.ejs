@@ -33,7 +33,7 @@
                                     <div class="blog-meta">
                                         <ul class="list-inline">
                                             <li><a href="#"><i class="fa fa-clock-o"></i><%= moment(i.dateAdded).format(shortDateFormat) %> </a></li>
-                                            <li><a href="#"><i class="fa fa-tag"></i> <%= i.category.categoryName %> </a></li>
+                                            <li><a href="/<%= i.category.id %>"><i class="fa fa-tag"></i> <%= i.category.categoryName %> </a></li>
                                         </ul><!-- end list -->
                                     </div><!-- end blog-meta -->
                                     <h4><a href="/blog/<%= i.seoUrl %>" title=""><%= i.title %></a></h4>

@@ -143,3 +143,9 @@ body {
 .post-media img {
     height: 250px;
 }
+
+#dashboard_logo img {
+    max-height: 70px;
+    margin: 20px 0px 40px 50px;
+}
+

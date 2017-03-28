@@ -19,7 +19,9 @@ START SITE HERE
 <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <a class="navbar-brand with-text" title="CMS" href="/">Node-CMS</a>
+        <div id="dashboard_logo" class="logo">
+            <a href="/"><img id="logo" src="/img/logo.png" alt="CMS"></a>
+        </div>
         <ul class="sidebar-nav">
             <li><a href="#">Dashboard <span><i class="fa fa-user"></i></span></a></li>
             <li class="active"><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
@@ -38,7 +40,7 @@ START SITE HERE
                 <div class="container-fluid">
                     <div class="clearfix">
                         <div class="title-area pull-left">
-                            <h2>Welcome, <span id="user_fname"> John </span>  </h2>
+                            <h2>Welcome, <span id="user_fname"> Binod </span>  </h2>
                         </div>
                     </div>
                     <!-- end clearfix -->
@@ -57,22 +59,24 @@ START SITE HERE
                                 <div class="col-md-3 col-sm-12">
                                     <div class="text-center">
                                         <img src="/img/profile.png" alt="team member img" class="img-responsive">
-                                        <br>
-                                        <a href="#" id="btnGetCode">Change Picture</a>
+                                        <!--<a href="#" id="btnGetCode">Change Picture</a>-->
                                     </div>
                                 </div><!-- end col -->
 
                                 <div class="col-md-9 col-sm-12">
                                     <div class="team-member-name">
-                                        <p id="userFullName">John Doe</p>
+                                        <p id="userFullName">Binod Chaudhary</p>
                                         <!-- <span>Student</span> -->
                                     </div>
                                     <div class="space-top-small"></div>
-                                    <h3 class="edu-green">Welcome to Node-CMS,</h3>
 
-                                    <p>Please take a tour of the system and drop your feedback or suggestions at email listed in footer below.</p>
+                                    <p>Hello World, Welcome to Node-CMS</p>
 
-                                    <p>Happy Learning!!!</p>
+                                    <p>This is a content management system based on Node.Js and Express with MonogDB as a database.</p>
+
+                                    <p>Please take a tour of the system and drop your feedback or suggestions at my email.</p>
+
+                                    <p>Thank You!!!</p>
 
                                     <hr class="invis">
 
@@ -84,7 +88,7 @@ START SITE HERE
                     <div class="col-md-5 col-sm-12 m30">
                         <div class="about-widget clearfix">
                             <div class="widget-title">
-                                <h3>Update Profile</h3>
+                                <h3>Profile Details</h3>
                                 <hr>
                                 <div id="msg"></div>
                             </div><!-- end title -->
@@ -92,20 +96,20 @@ START SITE HERE
                             <div class="defaultform">
                                 <form class="row">
                                     <div class="col-md-12">
-                                        <input type="text" id="email" disabled="disabled" class="form-control" placeholder="email">
+                                        <input type="text" id="email" value="thebinod7@gmail.com" disabled="disabled" class="form-control" placeholder="email">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text" id="fname" class="form-control" placeholder="Firstname">
+                                        <input type="text" id="fname" value="Binod" class="form-control" placeholder="Firstname">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="lname" class="form-control" placeholder="Lastname">
+                                        <input type="text"  id="lname" value="Chaudhary" class="form-control" placeholder="Lastname">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="phone" class="form-control" placeholder="Phone">
+                                        <input type="text"  id="phone" value="9843756482" class="form-control" placeholder="Phone">
                                     </div>
-                                    <div class="col-md-12 clearfix">
-                                        <button type="button" id="btnUpdate" class="btn btn-default"> Update</button>
-                                    </div>
+                                    <!--<div class="col-md-12 clearfix">-->
+                                        <!--<button type="button" id="btnUpdate" class="btn btn-default"> Update</button>-->
+                                    <!--</div>-->
                                 </form>
                             </div>
 

@@ -10,7 +10,6 @@ var getLatestPosts = function() {
     return Post.find({}).sort('-dateAdded')
 }
 
-
 router.get('/',function (req,res) {
     Post
         .find()
@@ -40,6 +39,11 @@ router.get('/',function (req,res) {
             }
         });
 });
+
+router.get('/admin',function (req,res) {
+    res.render('admin');
+});
+
 
 router.get('/profile',function (req,res) {
     res.render('secure/profile');
@@ -114,6 +118,30 @@ router.get('/blog/:seoUrl',function (req,res) {
         .populate('category')
         .exec(function (err, doc) {
             if(err){
+                res.json({success : false, msg : 'Failed to list!'});
+            } else {
+                getLatestPosts().sort('-dateAdded').exec(function(err, latestArticles) {
+                    if(err){
+                        res.json({success : false, msg : 'Failed to list content!'});
+                    } else {
+                        getCategory().exec(function(err, category) {
+                            if(err){
+                                res.json({success : false, msg : 'Failed to list category!'});
+                            } else {
+                                var data = {
+                                    blog: doc,
+                                    category: category,
+                                    articles: latestArticles
+                                }
+                                res.render('post_details', data)
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    /*    .exec(function (err, doc) {
+            if(err){
                 res.json({success : false, msg : 'Failed to list content!'});
             } else {
                 var data = {
@@ -121,21 +149,24 @@ router.get('/blog/:seoUrl',function (req,res) {
                 }
                 res.render('post_details', data)
             }
-        });
+        }); */
 });
 
 router.get('/:id',function (req,res) {
- Post.find({'category': req.params.id}, function(err, doc) {
-        if(err){
-            console.log(err);
-            res.json({success : false, msg : 'Failed to list content!'});
-        } else {
-            var data = {
-                blog: doc
+    Post
+        .find({ 'category': req.params.id })
+        .populate('category')
+        .exec(function (err, doc) {
+            if(err){
+                res.json({success : false, msg : 'Failed to list content!'});
+            } else {
+                var data = {
+                    blog: doc
+                }
+                res.render('post_by_category',data);
             }
-            res.render('post_by_category');
-        }
-    });
+        });
 });
+
 
 module.exports = router;
