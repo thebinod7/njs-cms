@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "body-parser": "*",
-    "connect-flash": "^0.1.1",
+    "express-flash": "*",
     "cookie-parser": "*",
     "ejs": "*",
     "express": "*",

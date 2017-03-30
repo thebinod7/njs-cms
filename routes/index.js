@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const router = express.Router();
 const Category = require('../models/category');
 const Post = require('../models/post');
@@ -44,12 +45,20 @@ router.get('/admin',function (req,res) {
     res.render('admin');
 });
 
+router.get('/logout',function (req,res) {
+    res.render('logout');
+});
 
-router.get('/profile',function (req,res) {
+
+router.get('/profile',checkAuth ,function(req,res) {
     res.render('secure/profile');
 });
 
-router.get('/new_post',function (req,res) {
+router.get('/error/403',function (req,res) {
+    res.render('error/403');
+});
+
+router.get('/new_post',checkAuth,function (req,res) {
     Category.find({}, function(err, doc) {
         if(err){
             res.json({success : false, msg : 'Failed to list!'});
@@ -63,7 +72,7 @@ router.get('/new_post',function (req,res) {
     });
 });
 
-router.get('/add_category',function (req,res) {
+router.get('/add_category',checkAuth,function (req,res) {
     Category.find({}, function(err, doc) {
         if(err){
             res.json({success : false, msg : 'Failed to list!'});
@@ -77,7 +86,7 @@ router.get('/add_category',function (req,res) {
     });
 });
 
-router.get('/post_list',function (req,res) {
+router.get('/post_list',checkAuth,function (req,res) {
     Post
         .find()
         .populate('category')
@@ -93,7 +102,7 @@ router.get('/post_list',function (req,res) {
         });
 });
 
-router.get('/post_list/:id',function (req,res) {
+router.get('/post_list/:id',checkAuth,function (req,res) {
     Post
         .findById(req.params.id)
         .populate('category')
@@ -166,6 +175,33 @@ router.get('/:id',function (req,res) {
                 res.render('post_by_category',data);
             }
         });
+});
+
+function checkAuth (req, res, next) {
+    if (!(req.session.admin && req.session.admin.token)) {
+        res.render('error/403', { status: 403 , page: { title: '403 - Unauthorized'} });
+        return;
+    }
+    next();
+}
+
+router.post('/admin/login', function(req, res, next) {
+    console.log(req.body);
+    if(req.body && req.body.username == 'wilson' && req.body.password == '12345'){
+        req.session.admin = {
+            token: 'de76af66229032dda',
+            datetime: Date.now()
+        }
+        res.redirect('/profile')
+    } else {
+        req.flash('error', 'Invalid username or password');
+        res.redirect('/admin')
+    }
+});
+
+router.get('/admin/logout', checkAuth, function(req,res){
+    req.session.destroy();
+    res.redirect('/');
 });
 
 

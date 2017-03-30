@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const moment = require('moment');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const flash = require('connect-flash');
+const flash = require('express-flash');
 const config = require('./config/database');
 //mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
@@ -27,6 +27,7 @@ app.locals.shortDateFormat = shortDateFormat;
 
 const apiCategory = require('./routes/category');
 const apiPost = require('./routes/post');
+//const apiAdmin = require('./routes/admin');
 const port = 4242;
 
 // view engine setup
@@ -39,7 +40,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(session({secret: 'helloworld12345678', resave:false, saveUninitialized:false, cookie: { maxAge: 600000 }}));
+app.use(session({secret: 'helloworld12345678', resave:false, saveUninitialized:false, cookie: { maxAge: 600000 }}));
 app.use(flash());
 app.use(bodyParser.json());
 
@@ -47,6 +48,7 @@ app.use(bodyParser.json());
 app.use('/', require('./routes'));
 app.use('/category',apiCategory);
 app.use('/post',apiPost);
+//app.use('/admin',apiAdmin);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'img/uploads')));
 
