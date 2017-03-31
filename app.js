@@ -28,7 +28,8 @@ app.locals.shortDateFormat = shortDateFormat;
 const apiCategory = require('./routes/category');
 const apiPost = require('./routes/post');
 //const apiAdmin = require('./routes/admin');
-const port = 4242;
+//const port = 4242;
+var port=Number(process.env.PORT || 4242);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
