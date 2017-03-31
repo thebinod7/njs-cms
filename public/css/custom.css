@@ -149,3 +149,9 @@ body {
     margin: 20px 0px 40px 50px;
 }
 
+.post-padding #content-detail img {
+    max-width: 100%;
+    display:block;
+    height: auto;
+}
+

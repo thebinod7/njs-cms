@@ -186,7 +186,6 @@ function checkAuth (req, res, next) {
 }
 
 router.post('/admin/login', function(req, res, next) {
-    console.log(req.body);
     if(req.body && req.body.username == 'wilson' && req.body.password == '12345'){
         req.session.admin = {
             token: 'de76af66229032dda',
