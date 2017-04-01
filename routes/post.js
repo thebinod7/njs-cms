@@ -7,8 +7,7 @@ var multer  = require('multer');
 
 
 var storage = multer.diskStorage({
-   // destination: './public/img/uploads/',
-    destination: 'https://node-cm.herokuapp.com/public/img/uploads/',
+    destination: './public/img/uploads/',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
     }
