@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<title>Profile</title>
 <% include ../common/head %>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
 
@@ -45,7 +46,7 @@ START SITE HERE
                 <div class="container-fluid">
                     <div class="text-center">
                         <div class="widget-title">
-                            <h2 class="text-center edu-green"><strong>Content List</strong></h2>
+                            <h2 class="text-center edu-green"><strong>Category List</strong></h2>
                         </div><!-- end title -->
                     </div><!-- end title -->
                     <div class="space-top-small"></div>
@@ -54,20 +55,19 @@ START SITE HERE
                             <thead>
                             <tr>
                                 <td>S.N.</td>
-                                <td>Title</td>
-                                <td>Category</td>
-                                <td>Edit</td>
+                                <td>Category Name</td>
+                                <td>Category Description</td>
                             </tr>
                             </thead>
                             <tbody>
-                            <% blog.forEach(function(blog, i) { %>
+                            <% cat.forEach(function(cat, i) { %>
                             <tr>
                                 <td><%= i + 1 %></td>
-                                <td><%= blog ? blog.title : 'Undefined' %></td>
-                                <td><%= blog ? blog.category.categoryName : 'Not Set' %></td>
-                                <td><a href="/post_list/<%= blog.id%>"><button class="btn btn-default btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+                                <td><%= cat ? cat.categoryName : 'Undefined' %></td>
+                                <td><%= cat ? cat.categoryDesc : 'Not Set' %></td>
                             </tr>
                             <% }) %>
+
                             </tbody>
                         </table>
                     </div>
@@ -86,6 +86,15 @@ START SITE HERE
 </div>
 <!-- end wrapper -->
 
+<!-- ******************************************
+/END SITE
+********************************************** -->
+
+<!-- ******************************************
+DEFAULT JAVASCRIPT FILES
+********************************************** -->
+<script src="js/all.js"></script>
+<script src="js/custom.js"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 <script>
@@ -93,5 +102,8 @@ START SITE HERE
         $('#category-list-table').DataTable();
     })
 </script>
+
 </body>
+
+<!-- Mirrored from psdconverthtml.com/live/edupress/member-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2016 05:20:04 GMT -->
 </html>

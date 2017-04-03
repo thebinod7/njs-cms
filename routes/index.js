@@ -72,6 +72,20 @@ router.get('/new_post',checkAuth,function (req,res) {
     });
 });
 
+router.get('/list_category',checkAuth,function (req,res) {
+    Category.find({}, function(err, doc) {
+        if(err){
+            res.json({success : false, msg : 'Failed to list!'});
+        } else {
+            var data = {
+                cat:doc
+            }
+            res.render('secure/category_list',data);
+            //res.json({success:true,msg:'Success',result:doc})
+        }
+    });
+});
+
 router.get('/add_category',checkAuth,function (req,res) {
     Category.find({}, function(err, doc) {
         if(err){
