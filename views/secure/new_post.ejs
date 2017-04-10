@@ -26,7 +26,7 @@ START SITE HERE
         </div>
         <ul class="sidebar-nav">
             <li><a href="#">Dashboard <span><i class="fa fa-user"></i></span></a></li>
-            <li class="active"><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
+            <li><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
             <li>
                 <a data-toggle="collapse" data-parent="#accordion" href="#cat-acc">Category<span><i class="fa fa-tag"></i></span></a>
                 <ul id="cat-acc" class="collapse" style="list-style: none; padding-left: 0; background: #222333;">
@@ -37,7 +37,7 @@ START SITE HERE
             <li>
                 <a data-toggle="collapse" data-parent="#accordion" href="#content-acc">Blog<span><i class="fa fa-book"></i></span></a>
                 <ul id="content-acc" class="collapse" style="list-style: none; padding-left: 0; background: #222333;">
-                    <li><a href="/new_post">Add Content <span><i class="fa fa-plus"></i></span></a></li>
+                    <li class="active"><a href="/new_post">Add Content <span><i class="fa fa-plus"></i></span></a></li>
                     <li><a href="/post_list">List Content <span><i class="fa fa-list"></i></span></a></li>
                 </ul>
             </li>
@@ -61,8 +61,8 @@ START SITE HERE
                             <div class="form-group">
                                 <label for="title">Featured Image</label>
                             </div>
-                            <input type="file" name="featuredImg" />
-                            <input type="submit" name="submit" value="Upload Image">
+                            <input type="file" class="form-control" name="featuredImg" />
+                            <input style="margin-top: 5px;" type="submit" name="submit" value="Upload Image">
                             <span id = "status"></span>
                         </form>
 
@@ -70,7 +70,7 @@ START SITE HERE
                             <div class="form-group">
                                 <label for="category">Choose Category:</label>
                                 <select class="form-control" id="post_category">
-                                    <option value="0">Choose Category</option>
+                                    <option value="0">- Choose Category -</option>
                                     <% cat.forEach(function (cat) { %>
                                     <option value="<%= cat.id %>"> <%= cat.categoryName %> <%})%> </option>
                                 </select>

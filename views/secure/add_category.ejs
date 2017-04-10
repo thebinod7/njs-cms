@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<title>Add - Category</title>
+
 <% include ../common/head %>
 <script src="/js/app/pages/add_category.js" type="text/javascript"></script>
 
@@ -18,11 +20,11 @@ START SITE HERE
         </div>
         <ul class="sidebar-nav">
             <li><a href="#">Dashboard <span><i class="fa fa-user"></i></span></a></li>
-            <li class="active"><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
+            <li><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
             <li>
                 <a data-toggle="collapse" data-parent="#accordion" href="#cat-acc">Category<span><i class="fa fa-tag"></i></span></a>
                 <ul id="cat-acc" class="collapse" style="list-style: none; padding-left: 0; background: #222333;">
-                    <li><a href="/add_category">Add<span><i class="fa fa-plus"></i></span></a></li>
+                    <li class="active"><a href="/add_category">Add<span><i class="fa fa-plus"></i></span></a></li>
                     <li><a href="/list_category">List<span><i class="fa fa-list"></i></span></a></li>
                 </ul>
             </li>
@@ -57,7 +59,7 @@ START SITE HERE
 
                             <div class="form-group">
                                 <label for="comment">Description:</label>
-                                <textarea class="form-control" rows="5" id="categoryDesc" placeholder="Enter short description"></textarea>
+                                <textarea class="form-control" rows="11" id="categoryDesc" placeholder="Enter short description"></textarea>
                             </div>
                             <button type="button" id="btnAddCategory" class="btn btn-default">Save</button>
                         </form>
