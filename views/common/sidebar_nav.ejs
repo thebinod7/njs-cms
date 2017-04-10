@@ -1,0 +1,37 @@
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div id="dashboard_logo" class="logo">
+            <a href="/" target="_blank"><img id="logo" src="/img/logo.png" alt="CMS"></a>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="#">Dashboard <span><i class="fa fa-user"></i></span></a></li>
+            <li><a href="/profile">Account Setting <span><i class="fa fa-cog"></i></span></a></li>
+            <li>
+                <a data-toggle="collapse" data-parent="#accordion" href="#users-acc">Users<span><i class="fa fa-angle-down"></i></span></a>
+                <ul id="users-acc" class="collapse" style="list-style: none; padding-left: 0; background: #222333;">
+                    <li><a href="#">Roles<span><i class="fa fa-lock"></i></span></a></li>
+                    <li><a href="#">Add<span><i class="fa fa-plus"></i></span></a></li>
+                    <li><a href="#">List<span><i class="fa fa-list"></i></span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-parent="#accordion" href="#cat-acc">Category<span><i class="fa fa-angle-down"></i></span></a>
+                <ul id="cat-acc" class="collapse" style="list-style: none; padding-left: 0; background: #222333;">
+                    <li><a href="/add_category">Add<span><i class="fa fa-plus"></i></span></a></li>
+                    <li><a href="/list_category">List<span><i class="fa fa-list"></i></span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" data-parent="#accordion" href="#content-acc">Blog<span><i class="fa fa-angle-down"></i></span></a>
+                <ul id="content-acc" class="collapse" style="list-style: none; padding-left: 0; background: #222333;">
+                    <li><a href="/new_post">Add Content <span><i class="fa fa-plus"></i></span></a></li>
+                    <li><a href="/post_list">List Content <span><i class="fa fa-list"></i></span></a></li>
+                </ul>
+            </li>
+            <li><a href="/logout">Logout  <span><i class="fa fa-sign-out"></i></span></a></li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+</div>
+<!-- end wrapper -->

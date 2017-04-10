@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
-//Category Schema
 var objectId = mongoose.Schema.ObjectId;
-const categorySchema = mongoose.Schema({
-    categoryId : objectId,
-    categoryName : {
+const roleSchema = mongoose.Schema({
+    roleId : objectId,
+    roleName : {
         type: String,
         required : true
     },
-    categoryDesc : {
+    roleDesc : {
         type : String
+    },
+    permissions : {
+        type : [String]
     },
     isActive : {
         type : Boolean,
@@ -22,5 +24,5 @@ const categorySchema = mongoose.Schema({
     }
 });
 
-const Category = module.exports = mongoose.model('Category',categorySchema);
+const Role = module.exports = mongoose.model('Role',roleSchema);
 
