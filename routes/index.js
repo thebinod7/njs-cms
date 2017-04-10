@@ -49,6 +49,9 @@ router.get('/logout',function (req,res) {
     res.render('logout');
 });
 
+router.get('/role',function (req,res) {
+    res.render('secure/users/role');
+});
 
 router.get('/profile',checkAuth ,function(req,res) {
     res.render('secure/profile');
