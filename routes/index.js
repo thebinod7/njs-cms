@@ -3,6 +3,7 @@ const session = require('express-session');
 const router = express.Router();
 const Category = require('../models/category');
 const Post = require('../models/post');
+const Role = require('../models/role');
 
 var getCategory = function() {
     return Category.find({});
@@ -85,6 +86,19 @@ router.get('/list_category',checkAuth,function (req,res) {
             }
             res.render('secure/category_list',data);
             //res.json({success:true,msg:'Success',result:doc})
+        }
+    });
+});
+
+router.get('/list_roles',checkAuth,function (req,res) {
+    Role.find({}, function(err, doc) {
+        if(err){
+            res.json({success : false, msg : 'Failed to list!'});
+        } else {
+            var data = {
+                role:doc
+            }
+            res.render('secure/users/roles_list',data);
         }
     });
 });

@@ -28,26 +28,26 @@ START SITE HERE
                 <div class="row">
                     <div id="msg"></div>
                     <div class="col-md-12">
-                        <form id="roleForm" method="POST" action="/role/add">
+                        <form id="roleForm">
                             <div class="form-group">
                                 <label for="category">Role:</label>
-                                <input type="text" class="form-control" name="roleName" placeholder="Enter name of role">
+                                <input type="text" class="form-control" id="roleName" placeholder="Enter name of role. eg: Content Manger">
                             </div>
 
                             <div class="form-group">
                                 <label for="category">Permissions:</label><br>
-                                <label class="checkbox-inline"><input type="checkbox" value="Read">Read</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="Write">Write</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="Publish">Publish</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="UserManger">UserManger</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="perm" value="read">Read</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="perm" value="write">Write</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="perm" value="publish">Publish</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="perm" value="manager">Manage Users</label>
                             </div>
 
 
                             <div class="form-group">
-                                <label for="comment">Description:</label>
-                                <textarea class="form-control" rows="4" id="roleDesc" placeholder="Enter role description"></textarea>
+                                <label>Description:</label>
+                                <textarea class="form-control" rows="6" id="roleDesc" placeholder="Enter role description"></textarea>
                             </div>
-                            <button type="submit" name="btnAddRole" class="btn btn-default">Save</button>
+                            <button type="button" id="btnAddRole" class="btn btn-default">Save</button>
                         </form>
                     </div>
                 </div>
@@ -71,6 +71,7 @@ START SITE HERE
 DEFAULT JAVASCRIPT FILES
 ********************************************** -->
 <script src="js/custom.js"></script>
+<script src="js/app/pages/role.js"></script>
 
 </body>
 

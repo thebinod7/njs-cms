@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>List - Roles</title>
+<% include ../../common/head %>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+
+<body class="leftmenu memberprofile">
+
+<!-- ******************************************
+START SITE HERE
+********************************************** -->
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <% include ../../common/sidebar_nav %>
+    <!-- End of Sidebar -->
+
+
+    <div id="page-content-wrapper">
+        <a href="#menu-toggle" class="menuopener" id="menu-toggle"><i class="fa fa-bars"></i></a>
+        <div id="page-content-wrapper">
+            <div class="section">
+                <div class="container-fluid">
+                    <div class="text-center">
+                        <div class="widget-title">
+                            <h2 class="text-center edu-green"><strong>Roles List</strong></h2>
+                        </div><!-- end title -->
+                    </div><!-- end title -->
+                    <div class="space-top-small"></div>
+                    <div class="row">
+                        <table class="table table-responsive table-bordered" id="role-list-table">
+                            <thead>
+                            <tr>
+                                <td>S.N.</td>
+                                <td>Role Name</td>
+                                <td>Role Description</td>
+                                <td>Permissions</td>
+                                <td>Action</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% role.forEach(function(role, i) { %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= role ? role.roleName : 'Undefined' %></td>
+                                <td><%= role ? role.roleDesc : 'Not Set' %></td>
+                                <td><%= role ? role.permissions : 'Not Set' %></td>
+                                <td><button class="btn btn-danger"><i class="fa fa-remove"></i></button></td>
+                            </tr>
+                            <% }) %>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="space-top"></div>
+        </div>
+
+
+        <% include ../../common/footer %>
+
+        <!-- end copyrights -->
+        <!-- end copyrights -->
+    </div>
+    <!-- end page-content-wrapper -->
+</div>
+<!-- end wrapper -->
+
+
+<!-- ******************************************
+DEFAULT JAVASCRIPT FILES
+********************************************** -->
+<script src="js/custom.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#role-list-table').DataTable();
+    })
+</script>
+
+</body>
+
+<!-- Mirrored from psdconverthtml.com/live/edupress/member-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2016 05:20:04 GMT -->
+</html>
