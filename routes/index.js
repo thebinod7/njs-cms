@@ -54,6 +54,19 @@ router.get('/role',function (req,res) {
     res.render('secure/users/role');
 });
 
+router.get('/users/add',function (req,res) {
+    Role.find({}, function(err, doc) {
+        if(err){
+            res.json({success : false, msg : 'Failed to list!'});
+        } else {
+            var data = {
+                role:doc
+            }
+            res.render('secure/users/add_users',data);
+        }
+    });
+});
+
 router.get('/profile',checkAuth ,function(req,res) {
     res.render('secure/profile');
 });
