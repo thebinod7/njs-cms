@@ -4,6 +4,9 @@ const config = require('../config/database');
 var objectId = mongoose.Schema.ObjectId;
 const userSchema = mongoose.Schema({
     userId : objectId,
+    profilePicUrl : {
+        type : String
+    },
     firstName : {
         type: String,
         required : true

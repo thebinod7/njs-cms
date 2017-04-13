@@ -46,7 +46,7 @@ router.get('/list',function (req,res) {
         .populate('category')
         .exec(function (err, cat) {
             if(err){
-                res.json({success : false, msg : 'Failed to add post!'});
+                res.json({success : false, msg : 'Failed to list!'});
             } else {
                 res.json({success:true,msg:'Success',result:cat})
             }
