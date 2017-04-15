@@ -3,7 +3,6 @@ const  router = express.Router();
 const config = require('../config/database');
 const Users= require('../models/users');
 
-
 router.post('/add',function (req,res) {
     var newUser = new Users({
         firstName : req.body.firstName,
@@ -14,11 +13,19 @@ router.post('/add',function (req,res) {
         socialUrl : req.body.socialUrl,
         role : req.body.role
     });
-    newUser.save(function (err,doc) {
-        if(err){
-            res.json({success : false, msg : 'Failed to add user!'});
-        } else {
-            res.json({success:true,msg:'Success',result:doc})
+    Users.getUserByEmail(newUser.email,function (err,userEmail) {
+        if(err) throw err;
+        if(userEmail){
+            res.json({msg:"Email already exists"})
+        }
+        else {
+            Users.addUser(newUser,function (err,doc) {
+                if(err){
+                    res.json({success : false, msg : 'Failed to register!'});
+                } else {
+                    res.json({success:true,msg:'User added successfully',result:doc})
+                }
+            })
         }
     });
 });

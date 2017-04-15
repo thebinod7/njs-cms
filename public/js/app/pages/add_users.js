@@ -5,6 +5,7 @@ $(document).ready(function() {
         var lname = $('#lname').val();
         var contact = $('#phone').val();
         var email = $('#email').val();
+        var socialUrl = $('#socialUrl').val();
         var pass = 'happynewyear';
         if(fname == '' || lname == '' || email == '' || role == 0 ){
             $('#msg').html('<p class="alert alert-danger"><strong>Fields with * are required!</strong></p>');
@@ -17,7 +18,8 @@ $(document).ready(function() {
                 lastName : lname,
                 contactNumber: contact,
                 email : email,
-                password : pass
+                password : pass,
+                socialUrl : socialUrl
             };
             $.ajax({
                 method: 'POST',
@@ -25,11 +27,11 @@ $(document).ready(function() {
                 url: '/users/add',
                 success: function (data) {
                     if(data.result){
-                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>User added successfully!</strong></p></div>' );
+                        $( "#msg" ).html( '<div class="alert alert-success"><p class="text-success"><strong>' + data.msg +'</strong></p></div>' );
                         clearForm();
                     }
                     else {
-                        $( "#msg" ).html( '<div class="alert alert-danger"><p class="text-danger"><strong>Something went wrong, Tyr again!!!</strong></p></div>' );
+                        $( "#msg" ).html( '<div class="alert alert-danger"><p class="text-danger"><strong>' + data.msg +'</strong></p></div>' );
                     }
                 },
                 error: function(err) {

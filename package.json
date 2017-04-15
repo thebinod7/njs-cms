@@ -8,11 +8,12 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "*",
-    "express-flash": "*",
     "cookie-parser": "*",
     "ejs": "*",
     "express": "*",
+    "express-flash": "*",
     "express-session": "^1.15.1",
     "moment": "^2.18.1",
     "mongoose": "*",
