@@ -34,7 +34,8 @@ START SITE HERE
                                 <td>S.N.</td>
                                 <td>Title</td>
                                 <td>Category</td>
-                                <td>Edit</td>
+                                <td>Status</td>
+                                <td>Actions</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -43,6 +44,7 @@ START SITE HERE
                                 <td><%= i + 1 %></td>
                                 <td><%= blog ? blog.title : 'Undefined' %></td>
                                 <td><%= blog ? blog.category.categoryName : 'Not Set' %></td>
+                                <td><%= blog ? blog.status : 'Not Set' %></td>
                                 <td><a href="/post_list/<%= blog.id%>"><button class="btn btn-default btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
                             </tr>
                             <% }) %>

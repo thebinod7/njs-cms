@@ -2,6 +2,36 @@ const express = require('express');
 const  router = express.Router();
 const config = require('../config/database');
 const Users= require('../models/users');
+const nodemailer = require('nodemailer');
+
+var sendEmail = function (dest,name) {
+    // create reusable transporter object using the default SMTP transport
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'binod@rumsan.com',
+            pass: 'T$mp1234'
+        }
+    });
+
+// setup email data with unicode symbols
+    var mailOptions = {
+        from: 'binod@rumsan.com', // sender address
+        to: dest, // list of receivers
+        subject: 'User registration ✔', // Subject line
+       // text: message, // plain text body
+        html: '<b>Congratulations ' + name + ', you have been registered to Node-CMS.</b><br><a href="http://localhost:4242/">Click here to set you account password</a>' // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions,function () {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Email sent successfully!');
+      //  console.log('Message %s sent: %s', info.messageId, info.response);
+    })
+}
 
 router.post('/add',function (req,res) {
     var newUser = new Users({
@@ -21,8 +51,9 @@ router.post('/add',function (req,res) {
         else {
             Users.addUser(newUser,function (err,doc) {
                 if(err){
-                    res.json({success : false, msg : 'Failed to register!'});
+                    res.json({success : false, msg : 'Failed to add!'});
                 } else {
+                    sendEmail(doc.email,doc.firstName);
                     res.json({success:true,msg:'User added successfully',result:doc})
                 }
             })
@@ -54,12 +85,12 @@ router.get('/:id',function (req,res) {
 });
 
 router.delete('/:id',function (req,res) {
-    Role.findById(req.params.id, function(err, doc) {
+    Users.findById(req.params.id, function(err, doc) {
         if (err) throw err;
 
         doc.remove(function(err) {
             if (err) throw err;
-            res.json({success:true,msg:'Role deleted successfully'});
+            res.json({success:true,msg:'User deleted successfully'});
         });
     });
 });
