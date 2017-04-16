@@ -54,6 +54,10 @@ router.get('/role',function (req,res) {
     res.render('secure/users/role');
 });
 
+router.get('/change/password',function (req,res) {
+    res.render('secure/users/change_password');
+});
+
 router.get('/users/add',function (req,res) {
     Role.find({}, function(err, doc) {
         if(err){

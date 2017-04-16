@@ -20,7 +20,7 @@ var sendEmail = function (dest,name) {
         to: dest, // list of receivers
         subject: 'User registration ✔', // Subject line
        // text: message, // plain text body
-        html: '<b>Congratulations ' + name + ', you have been registered to Node-CMS.</b><br><a href="http://localhost:4242/">Click here to set you account password</a>' // html body
+        html: '<b>Congratulations ' + name + ', you have been registered to Node-CMS.</b><br><a href="http://localhost:4242/change/password">Click here to set you account password</a>' // html body
     };
 
     // send mail with defined transport object
