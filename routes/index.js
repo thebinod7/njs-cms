@@ -55,7 +55,7 @@ router.get('/role',function (req,res) {
     res.render('secure/users/role');
 });
 
-router.get('/:id',function (req,res) {
+router.get('/verify/:id',function (req,res) {
     Verification
         .findById(req.params.id)
         .exec(function (err, doc) {
