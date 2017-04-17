@@ -4,6 +4,7 @@ const router = express.Router();
 const Category = require('../models/category');
 const Post = require('../models/post');
 const Role = require('../models/role');
+const Verification = require('../models/verification');
 
 var getCategory = function() {
     return Category.find({});
@@ -54,8 +55,20 @@ router.get('/role',function (req,res) {
     res.render('secure/users/role');
 });
 
-router.get('/change/password',function (req,res) {
-    res.render('secure/users/change_password');
+router.get('/:id',function (req,res) {
+    Verification
+        .findById(req.params.id)
+        .exec(function (err, doc) {
+                if(err){
+                    res.json({success : false, msg : 'Failed to list!'});
+                } else {
+                    var data = {
+                        verify: doc
+                    }
+                    res.render('secure/users/change_password',data);
+                }
+        });
+
 });
 
 router.get('/users/add',function (req,res) {

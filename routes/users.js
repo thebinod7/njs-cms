@@ -2,9 +2,10 @@ const express = require('express');
 const  router = express.Router();
 const config = require('../config/database');
 const Users= require('../models/users');
+const Verification= require('../models/verification');
 const nodemailer = require('nodemailer');
 
-var sendEmail = function (dest,name) {
+var sendEmail = function (dest,name,id) {
     // create reusable transporter object using the default SMTP transport
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -20,7 +21,7 @@ var sendEmail = function (dest,name) {
         to: dest, // list of receivers
         subject: 'User registration ✔', // Subject line
        // text: message, // plain text body
-        html: '<b>Congratulations ' + name + ', you have been registered to Node-CMS.</b><br><a href="http://localhost:4242/change/password">Click here to set you account password</a>' // html body
+        html: '<b>Congratulations '+ name +', you have been registered to Node-CMS.</b><br><a href="http://localhost:4242/'+ id  +'">Click here to set you account password</a>' // html body
     };
 
     // send mail with defined transport object
@@ -53,8 +54,17 @@ router.post('/add',function (req,res) {
                 if(err){
                     res.json({success : false, msg : 'Failed to add!'});
                 } else {
-                    sendEmail(doc.email,doc.firstName);
-                    res.json({success:true,msg:'User added successfully',result:doc})
+                    var verifyData = new Verification({
+                        userId : doc.id,
+                        email : doc.email,
+                        firstName : doc.firstName
+                    });
+                    verifyData.save(function (err,verify) {
+                        if (err) throw  err;
+                        sendEmail(verify.email,verify.firstName,verify.id);
+                        res.json({success:true,msg:'User added successfully',result:doc})
+                    });
+
                 }
             })
         }
@@ -75,7 +85,7 @@ router.get('/list',function (req,res) {
 });
 
 router.get('/:id',function (req,res) {
-    Role.findById(req.params.id, function(err, doc) {
+    Users.findById(req.params.id, function(err, doc) {
         if(err){
             res.json({success : false, msg : 'Failed to get role!'});
         } else {
@@ -94,5 +104,16 @@ router.delete('/:id',function (req,res) {
         });
     });
 });
+router.delete('/login',function (req,res) {
+    Users.findById(req.params.id, function(err, doc) {
+        if (err) throw err;
+
+        doc.remove(function(err) {
+            if (err) throw err;
+            res.json({success:true,msg:'User deleted successfully'});
+        });
+    });
+});
+
 
 module.exports = router;
