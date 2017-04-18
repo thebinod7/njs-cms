@@ -29,7 +29,7 @@ const apiCategory = require('./routes/category');
 const apiPost = require('./routes/post');
 const apiRole = require('./routes/role');
 const apiUsers = require('./routes/users');
-//const apiAdmin = require('./routes/admin');
+const apiAdmin = require('./routes/admin');
 //const port = 4242;
 var port=Number(process.env.PORT || 4242);
 
@@ -53,7 +53,7 @@ app.use('/category',apiCategory);
 app.use('/post',apiPost);
 app.use('/role',apiRole);
 app.use('/users',apiUsers);
-//app.use('/admin',apiAdmin);
+app.use('/admin',apiAdmin);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'img/uploads')));
 
