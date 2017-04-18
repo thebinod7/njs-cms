@@ -22,7 +22,7 @@ START SITE HERE
                 <div class="container-fluid">
                     <div class="clearfix">
                         <div class="title-area pull-left">
-                            <h2>Welcome, <span id="user_fname"> Guest! </span>  </h2>
+                            <h2>Welcome, <span id="user_fname"> <%= user.firstName %> </span>  </h2>
                         </div>
                     </div>
                     <!-- end clearfix -->
@@ -41,13 +41,13 @@ START SITE HERE
                                 <div class="col-md-3 col-sm-12">
                                     <div class="text-center">
                                         <img src="/img/binod.jpg" alt="team member img" class="img-responsive">
-                                        <!--<a href="#" id="btnGetCode">Change Picture</a>-->
+                                        <a href="<%= user.socialUrl %>" target="_blank">Social Profile</a>
                                     </div>
                                 </div><!-- end col -->
 
                                 <div class="col-md-9 col-sm-12">
                                     <div class="team-member-name">
-                                        <p id="userFullName">Binod Chaudhary</p>
+                                        <p id="userFullName"><%= user.firstName %> <%= user.lastName %></p>
                                         <!-- <span>Student</span> -->
                                     </div>
                                     <div class="space-top-small"></div>
@@ -78,16 +78,16 @@ START SITE HERE
                             <div class="defaultform">
                                 <form class="row">
                                     <div class="col-md-12">
-                                        <input type="text" id="email" value="thebinod7@gmail.com" disabled="disabled" class="form-control" placeholder="email">
+                                        <input type="text" id="email" value="<%= user.email %>" disabled="disabled" class="form-control" placeholder="email">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text" id="fname" value="Binod" class="form-control" placeholder="Firstname">
+                                        <input type="text" id="fname" value="<%= user.firstName %>" class="form-control" placeholder="Firstname">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="lname" value="Chaudhary" class="form-control" placeholder="Lastname">
+                                        <input type="text"  id="lname" value="<%= user.lastName %>" class="form-control" placeholder="Lastname">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="phone" value="9843756482" class="form-control" placeholder="Phone">
+                                        <input type="text"  id="phone" value="<%= user.contactNumber %>" class="form-control" placeholder="Phone">
                                     </div>
                                     <!--<div class="col-md-12 clearfix">-->
                                         <!--<button type="button" id="btnUpdate" class="btn btn-default"> Update</button>-->

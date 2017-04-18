@@ -85,7 +85,10 @@ router.get('/users/add',function (req,res) {
 });
 
 router.get('/profile',checkAuth ,function(req,res) {
-    res.render('secure/profile');
+    var data = {
+        user : req.session.admin.user
+    }
+    res.render('secure/profile',data);
 });
 
 router.get('/error/403',function (req,res) {
