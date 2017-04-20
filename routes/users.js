@@ -90,17 +90,22 @@ router.post('/change/password',function (req,res) {
                             res.json({success : false, msg : 'Error occured,try again!'});
                         } else {
                             Users.findOneAndUpdate({ email: user_data.email }, { $set: { password: user_data.newPassword } }, { new: true }, function(err, user) {
-                                res.json({success:true,msg:'Password changed successfully!',result:user})
+                                req.flash('success', 'Password has been set successfully!');
+                                res.redirect('/admin');
                             });
                         }
                     })
                 }
                 else {
-                    return res.json({msg:'Wrong password!'});
+                    req.flash('error', 'Wrong old password!');
+                    res.redirect(req.get('referer'));
+                    return;
                 }
             });
         } else {
-            res.json({success : false, msg : 'Email not found'});
+            req.flash('error', 'Email not found!');
+            res.redirect(req.get('referer'));
+            return;
         }
     })
 });
