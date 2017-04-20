@@ -155,3 +155,7 @@ body {
     height: auto;
 }
 
+.demo-parallax.onecourse, .demo-parallax {
+    padding: 15rem 0 15rem !important;
+}
+

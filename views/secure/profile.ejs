@@ -54,7 +54,7 @@ START SITE HERE
 
                                     <p>Hello World, Welcome to Node-CMS</p>
 
-                                    <p>This is a content management system based on Node.Js and Express with MonogDB as a database.</p>
+                                    <p>This is a content management system based on Node.Js and Express with MongoDB as a database.</p>
 
                                     <p>Please take a tour of the system and drop your feedback or suggestions at my email.</p>
 
@@ -78,6 +78,9 @@ START SITE HERE
                             <div class="defaultform">
                                 <form class="row">
                                     <div class="col-md-12">
+                                        <input type="text" id="userId" value="<%= user._id %>" class="form-control" placeholder="email">
+                                    </div>
+                                    <div class="col-md-12">
                                         <input type="text" id="email" value="<%= user.email %>" disabled="disabled" class="form-control" placeholder="email">
                                     </div>
                                     <div class="col-md-12">
@@ -89,9 +92,12 @@ START SITE HERE
                                     <div class="col-md-12">
                                         <input type="text"  id="phone" value="<%= user.contactNumber %>" class="form-control" placeholder="Phone">
                                     </div>
-                                    <!--<div class="col-md-12 clearfix">-->
-                                        <!--<button type="button" id="btnUpdate" class="btn btn-default"> Update</button>-->
-                                    <!--</div>-->
+                                    <div class="col-md-12">
+                                        <input type="text"  id="socialUrl" value="<%= user.socialUrl %>" class="form-control" placeholder="Social URL">
+                                    </div>
+                                    <div class="col-md-12 clearfix">
+                                        <button type="button" id="btnUpdateProfile" class="btn btn-default"> Update</button>
+                                    </div>
                                 </form>
                             </div>
 
@@ -100,53 +106,6 @@ START SITE HERE
                 </div><!-- end row -->
             </div><!-- end container -->
         </div><!-- end section -->
-
-        <div class="modal fade" id="changePassword" role="dialog" style="margin-top: 150px;">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Change Password</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal">
-                            <div class="row">
-                                <label class="control-label col-sm-2"></label>
-                                <div class="col-sm-10">
-                                    <div id="change_pass_msg"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="full_name">Password:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="pwd" placeholder="Enter a strong password">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="phone">Confirm:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm password">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnChangePassword" class="btn btn-default">Change</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </div>
     <!-- end page-content-wrapper -->
 </div>
@@ -160,6 +119,7 @@ START SITE HERE
 DEFAULT JAVASCRIPT FILES
 ********************************************** -->
 <script src="js/custom.js"></script>
+<script src="/js/app/pages/profile.js" type="text/javascript"></script>
 
 </body>
 

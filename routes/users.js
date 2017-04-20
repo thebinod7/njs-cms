@@ -144,4 +144,26 @@ router.delete('/:id',function (req,res) {
     });
 });
 
+router.post('/:id',function (req,res) {
+    Users.findById(req.params.id, function (err, doc) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            doc.email = doc.email;
+            doc.password = doc.password;
+            doc.firstName = req.body.firstName || doc.firstName;
+            doc.lastName = req.body.lastName || doc.lastName;
+            doc.contactNumber = req.body.contactNumber || doc.contactNumber;
+            doc.socialUrl = req.body.socialUrl || doc.socialUrl;
+            doc.role = doc.role;
+            doc.save(function (err, data) {
+                if (err) {
+                    res.json({success:true,result:data,msg:'Unable to updated profile! Please try again'});
+                }
+                res.json({msg:'Profile updated successfully!', success:true,result:data});
+            })
+        }
+    });
+});
+
 module.exports = router;

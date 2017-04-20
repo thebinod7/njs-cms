@@ -32,10 +32,6 @@ router.post('/auth',function (req,res) {
                 const token = jwt.sign(users,config.secret,{
                     expiresIn : 604800 //1 week
                 });
-                var data = {
-                    user: doc,
-                    token: token
-                }
                 req.session.admin = {
                     token: token,
                     user : doc,
@@ -66,6 +62,7 @@ router.post('/login', function(req, res, next) {
 
 router.get('/logout', checkAuth, function(req,res){
     req.session.destroy();
+    req.session.admin = null;
     res.redirect('/');
 });
 
