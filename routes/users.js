@@ -35,6 +35,7 @@ var sendEmail = function (dest,name,id) {
 }
 
 router.post('/add',function (req,res) {
+    console.log(req.body);
     var newUser = new Users({
         firstName : req.body.firstName,
         lastName : req.body.lastName,
@@ -71,6 +72,39 @@ router.post('/add',function (req,res) {
     });
 });
 
+router.post('/change/password',function (req,res) {
+    var user_data = new Users({
+        email : req.body.email,
+        password : req.body.password,
+        newPassword : req.body.newPassword
+    });
+    Users.getUserByEmail(user_data.email,function (err,isUser) {
+        if(err) throw err;
+        if(isUser){
+            Users.comparePassword(user_data.password,isUser.password,function (err,isMatch) {
+                console.log('Match:' + isMatch);
+                if(err) throw err;
+                if(isMatch){
+                    Users.changePassword(user_data,function (err,doc) {
+                        if(err){
+                            res.json({success : false, msg : 'Error occured,try again!'});
+                        } else {
+                            Users.findOneAndUpdate({ email: user_data.email }, { $set: { password: user_data.newPassword } }, { new: true }, function(err, user) {
+                                res.json({success:true,msg:'Password changed successfully!',result:user})
+                            });
+                        }
+                    })
+                }
+                else {
+                    return res.json({msg:'Wrong password!'});
+                }
+            });
+        } else {
+            res.json({success : false, msg : 'Email not found'});
+        }
+    })
+});
+
 router.get('/list',function (req,res) {
     Users
         .find()
@@ -104,16 +138,5 @@ router.delete('/:id',function (req,res) {
         });
     });
 });
-router.delete('/login',function (req,res) {
-    Users.findById(req.params.id, function(err, doc) {
-        if (err) throw err;
-
-        doc.remove(function(err) {
-            if (err) throw err;
-            res.json({success:true,msg:'User deleted successfully'});
-        });
-    });
-});
-
 
 module.exports = router;

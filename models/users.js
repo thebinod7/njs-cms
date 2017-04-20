@@ -38,6 +38,9 @@ const userSchema = mongoose.Schema({
     dateAdded : {
         type : Date,
         default: Date.now
+    },
+    newPassword : {
+        type : String
     }
 });
 
@@ -62,5 +65,15 @@ module.exports.comparePassword = function (candidatePassword,hash,callback) {
     bcrypt.compare(candidatePassword,hash,function (err,isMatch) {
         if(err) throw err;
         callback(null,isMatch);
+    });
+}
+
+module.exports.changePassword = function (user_data,callback) {
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(user_data.newPassword, salt, function(err, hash) {
+            if (err) throw err;
+            user_data.newPassword = hash;
+            callback(null,user_data);
+        });
     });
 }
