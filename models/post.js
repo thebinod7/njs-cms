@@ -25,6 +25,10 @@ const postSchema = mongoose.Schema({
         type : objectId,
         ref : 'Category'
     },
+    author : {
+        type : objectId,
+        ref : 'Users'
+    },
     isActive : {
         type : Boolean,
         default : true

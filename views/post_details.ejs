@@ -22,7 +22,7 @@
                         <div class="blog-single-meta clearfix">
                             <div class="addthis_inline_share_toolbox"></div>
                             <ul class="list-inline">
-                                <li><a href="https://www.facebook.com/Leonidas.Binod.169" target="_blank"><i class="fa fa-user"></i> Binod Chaudhary</a></li>
+                                <li><a href="<%= blog.author.socialUrl %>" target="_blank"><i class="fa fa-user"></i> <%= blog.author.firstName %> <%= blog.author.lastName %></a></li>
                                 <li><i class="fa fa-tag"></i> <a href="/<%= blog.category.id %>" class="readmore"><%= blog.category.categoryName %></a></li>
                                 <li><i class="fa fa-clock-o"></i> <%= moment(blog.dateAdded).format(shortDateFormat) %> </li>
                             </ul>

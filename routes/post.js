@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const  router = express.Router();
 const config = require('../config/database');
 const Post = require('../models/post');
@@ -27,6 +28,7 @@ router.post('/add',function (req,res) {
     var newPost = new Post({
         featuredImgUrl : req.body.featuredImgUrl,
         category : req.body.category,
+        author : req.session.admin.user._id,
         title : req.body.title,
         seoUrl : req.body.seoUrl,
         content : req.body.content

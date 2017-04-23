@@ -4,11 +4,17 @@ const router = express.Router();
 const Category = require('../models/category');
 const Post = require('../models/post');
 const Role = require('../models/role');
+const Users = require('../models/users');
 const Verification = require('../models/verification');
 
 var getCategory = function() {
     return Category.find({});
 }
+
+var getAuthor = function() {
+    return Users.find({});
+}
+
 var getLatestPosts = function() {
     return Post.find({}).sort('-dateAdded')
 }
@@ -17,6 +23,7 @@ router.get('/',function (req,res) {
     Post
         .find()
         .populate('category')
+        .populate('author')
         .exec(function (err, doc) {
             if(err){
                 res.json({success : false, msg : 'Failed to list!'});
@@ -29,12 +36,19 @@ router.get('/',function (req,res) {
                             if(err){
                                 res.json({success : false, msg : 'Failed to list category!'});
                             } else {
-                                var data = {
-                                    blog: doc,
-                                    category: category,
-                                    articles: latestArticles
-                                }
-                                res.render('index', data)
+                                getAuthor().exec(function(err, author) {
+                                    if(err){
+                                        res.json({success : false, msg : 'Failed to list author!'});
+                                    } else {
+                                        var data = {
+                                            blog: doc,
+                                            category: category,
+                                            articles: latestArticles,
+                                            author : author
+                                        }
+                                        res.render('index', data)
+                                    }
+                                });
                             }
                         });
                     }
@@ -189,6 +203,7 @@ router.get('/blog/:seoUrl',function (req,res) {
     Post
         .findOne({ seoUrl: req.params.seoUrl })
         .populate('category')
+        .populate('author')
         .exec(function (err, doc) {
             if(err){
                 res.json({success : false, msg : 'Failed to list!'});
@@ -201,12 +216,20 @@ router.get('/blog/:seoUrl',function (req,res) {
                             if(err){
                                 res.json({success : false, msg : 'Failed to list category!'});
                             } else {
-                                var data = {
-                                    blog: doc,
-                                    category: category,
-                                    articles: latestArticles
-                                }
-                                res.render('post_details', data)
+                                getAuthor().exec(function(err, author) {
+                                    if(err){
+                                        res.json({success : false, msg : 'Failed to list author!'});
+                                    } else {
+                                        var data = {
+                                            blog: doc,
+                                            cateogry : category,
+                                            articles : latestArticles,
+                                            author : author
+                                        }
+                                        console.log(data);
+                                        res.render('post_details', data)
+                                    }
+                                });
                             }
                         });
                     }
@@ -229,14 +252,22 @@ router.get('/:id',function (req,res) {
     Post
         .find({ 'category': req.params.id })
         .populate('category')
+        .populate('author')
         .exec(function (err, doc) {
             if(err){
                 res.json({success : false, msg : 'Failed to list content!'});
             } else {
-                var data = {
-                    blog: doc
-                }
-                res.render('post_by_category',data);
+                getAuthor().exec(function(err, author) {
+                    if(err){
+                        res.json({success : false, msg : 'Failed to list author!'});
+                    } else {
+                        var data = {
+                            blog: doc,
+                            author : author
+                        }
+                        res.render('post_by_category',data);
+                    }
+                });
             }
         });
 });
