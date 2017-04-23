@@ -42,11 +42,14 @@ $(document).ready(function() {
             success: function (data) {
                 console.log(data);
                 if(data){
+                    $('#user_fname').text(data.result.firstName);
+                    $('#userFullName').text(data.result.firstName +''+ data.result.lastName);
                     $('#email').val(data.result.email);
                     $('#fname').val(data.result.firstName);
                     $('#lname').val(data.result.lastName);
                     $('#phone').val(data.result.contactNumber);
                     $('#socialUrl').val(data.result.socialUrl);
+                    $('#socialProfile').attr('href',data.result.socialUrl);
                 }
                 else {
                     $( "#msg" ).html( '<div class="alert alert-danger"><p class="text-danger"><strong>'+ data.msg +'</strong></p></div>' );
