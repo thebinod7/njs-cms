@@ -77,23 +77,23 @@ START SITE HERE
 
                             <div class="defaultform">
                                 <form class="row">
-                                    <div class="col-md-12">
+                                    <div style="display: none;" class="col-md-12">
                                         <input type="text" id="userId" value="<%= user._id %>" class="form-control" placeholder="email">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text" id="email" value="<%= user.email %>" disabled="disabled" class="form-control" placeholder="email">
+                                        <input type="text" id="email"  disabled="disabled" class="form-control" placeholder="email">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text" id="fname" value="<%= user.firstName %>" class="form-control" placeholder="Firstname">
+                                        <input type="text" id="fname" class="form-control" placeholder="Firstname">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="lname" value="<%= user.lastName %>" class="form-control" placeholder="Lastname">
+                                        <input type="text"  id="lname"  class="form-control" placeholder="Lastname">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="phone" value="<%= user.contactNumber %>" class="form-control" placeholder="Phone">
+                                        <input type="text"  id="phone" class="form-control" placeholder="Phone">
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text"  id="socialUrl" value="<%= user.socialUrl %>" class="form-control" placeholder="Social URL">
+                                        <input type="text"  id="socialUrl"  class="form-control" placeholder="Social URL">
                                     </div>
                                     <div class="col-md-12 clearfix">
                                         <button type="button" id="btnUpdateProfile" class="btn btn-default"> Update</button>

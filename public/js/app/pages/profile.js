@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    var userId = $('#userId').val();
+    getProfile();
     $('#btnUpdateProfile').on("click", function () {
-        var userId = $('#userId').val();
         var email = $('#email').val();
         var fname = $('#fname').val();
         var lname = $('#lname').val();
@@ -33,4 +34,28 @@ $(document).ready(function() {
             }
         });
     });
+    
+    function getProfile() {
+        $.ajax({
+            method: 'GET',
+            url: '/users/' + userId,
+            success: function (data) {
+                console.log(data);
+                if(data){
+                    $('#email').val(data.result.email);
+                    $('#fname').val(data.result.firstName);
+                    $('#lname').val(data.result.lastName);
+                    $('#phone').val(data.result.contactNumber);
+                    $('#socialUrl').val(data.result.socialUrl);
+                }
+                else {
+                    $( "#msg" ).html( '<div class="alert alert-danger"><p class="text-danger"><strong>'+ data.msg +'</strong></p></div>' );
+                }
+            },
+            error: function(err) {
+                console.log(err);
+                $( "#msg" ).html( '<div class="alert alert-danger"><p class="text-danger"><strong>'+ data.msg +'</strong></p></div>' );
+            }
+        });
+    }
 });
