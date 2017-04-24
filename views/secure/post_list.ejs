@@ -44,8 +44,14 @@ START SITE HERE
                                 <td><%= i + 1 %></td>
                                 <td><%= blog ? blog.title : 'Undefined' %></td>
                                 <td><%= blog ? blog.category.categoryName : 'Not Set' %></td>
-                                <td><%= blog ? blog.status : 'Not Set' %></td>
-                                <td><a href="/post_list/<%= blog.id%>"><button class="btn btn-default btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+                                <td>
+                                    <select class="form-control change-content-status" data-contentid="<%= blog.id %>">
+                                        <option value="true">Publish</option>
+                                        <option value="false">Draft</option>
+                                    </select></td>
+                                <td>
+                                    <a href="/post_list/<%= blog.id%>"><button class="btn btn-default btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                </td>
                             </tr>
                             <% }) %>
                             </tbody>
@@ -65,9 +71,39 @@ START SITE HERE
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#category-list-table').DataTable();
+
     })
 </script>
 <script src="js/custom.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#category-list-table').DataTable();
+
+        $('body').on('change', '.change-content-status', changeContentStatus)
+
+        function changeContentStatus() {
+            var contentId = $(this).data('contentid');
+            var status = $(this).val();
+            console.log(contentId,status);
+            return;
+            api.kachha.changeCourseStatus({
+                data: {
+                    class_uuid: class_uuid,
+                    course_uuid: course_uuid,
+                    is_ready: is_ready === 'true'
+                },
+                success: function(res) {
+                    $('#publish-success-msg')
+                        .show()
+                        .html('Course has been ' + (is_ready === 'true' ? 'published' : 'unpublished') + ' successfully');
+                    setTimeout(function() {
+                        $('#publish-success-msg')
+                            .fadeOut()
+                    }, 3000)
+                }
+            })
+        }
+    })
+</script>
 </body>
 </html>

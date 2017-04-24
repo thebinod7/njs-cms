@@ -99,5 +99,11 @@ router.post('/:id',function (req,res) {
     });
 });
 
+router.post('/change/status/',function (req,res) {
+var id = req.body.contentId;
+var status = req.body.status;
+
+});
+
 
 module.exports = router;
