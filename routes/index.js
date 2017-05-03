@@ -48,7 +48,7 @@ var getLatestPosts = function() {
 
 router.get('/',function (req,res) {
     Post
-        .find()
+        .find({status : 'Publish'})
         .populate('category')
         .populate('author')
         .exec(function (err, doc) {
@@ -277,7 +277,7 @@ router.get('/blog/:seoUrl',function (req,res) {
 
 router.get('/:id',function (req,res) {
     Post
-        .find({ 'category': req.params.id })
+        .find({status : 'Publish', 'category': req.params.id })
         .populate('category')
         .populate('author')
         .exec(function (err, doc) {
