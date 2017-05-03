@@ -7,6 +7,33 @@ const Role = require('../models/role');
 const Users = require('../models/users');
 const Verification = require('../models/verification');
 
+function checkAuth (req, res, next) {
+    if (!(req.session.admin && req.session.admin.token)) {
+        res.render('error/403', { status: 403 , page: { title: '403 - Unauthorized'} });
+        return;
+    }
+    next();
+}
+
+function checkPerm (req, res, next) {
+    if (!(req.session.admin && req.session.admin.token)) {
+        res.render('error/403', { status: 403 , page: { title: '403 - Unauthorized'} });
+        return;
+    }
+    Role.findById(req.session.admin.user.role, function(err, doc) {
+        if (err) throw err;
+        (doc.permissions).forEach(function(p) {
+            console.log(p);
+            if(p !== 'manager'){
+                res.render('error/403', { status: 403 , page: { title: '403 - Unauthorized'} });
+                return;
+            }
+        });
+        // console.log(JSON.stringify(doc.permissions));
+    });
+    next();
+}
+
 var getCategory = function() {
     return Category.find({});
 }
@@ -85,7 +112,7 @@ router.get('/verify/:id',function (req,res) {
 
 });
 
-router.get('/users/add',function (req,res) {
+router.get('/users/add', checkAuth, function (req,res) {
     Role.find({}, function(err, doc) {
         if(err){
             res.json({success : false, msg : 'Failed to list!'});
@@ -98,7 +125,7 @@ router.get('/users/add',function (req,res) {
     });
 });
 
-router.get('/profile',checkAuth ,function(req,res) {
+router.get('/profile', checkAuth, function(req,res) {
     var data = {
         user : req.session.admin.user
     }
@@ -272,13 +299,7 @@ router.get('/:id',function (req,res) {
         });
 });
 
-function checkAuth (req, res, next) {
-    if (!(req.session.admin && req.session.admin.token)) {
-        res.render('error/403', { status: 403 , page: { title: '403 - Unauthorized'} });
-        return;
-    }
-    next();
-}
+
 
 router.post('/admin/login', function(req, res, next) {
     if(req.body && req.body.username == 'wilson' && req.body.password == '12345'){

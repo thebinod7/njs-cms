@@ -100,9 +100,17 @@ router.post('/:id',function (req,res) {
 });
 
 router.post('/change/status/',function (req,res) {
-var id = req.body.contentId;
+var id = req.body.id;
 var status = req.body.status;
-
+if(status === 'true') {
+    Post.findOneAndUpdate({ _id: id }, { $set: { status: 'Publish' } }, { new: true }, function(err, content) {
+        res.json({success : true, msg : 'Content published successfully!'});
+     });
+} else {
+    Post.findOneAndUpdate({ _id: id }, { $set: { status: 'Draft' } }, { new: true }, function(err, content) {
+        res.json({success : true, msg : 'Content saved to draft!'});
+    });
+}
 });
 
 

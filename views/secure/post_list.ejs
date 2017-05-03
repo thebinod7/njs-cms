@@ -28,6 +28,7 @@ START SITE HERE
                     </div><!-- end title -->
                     <div class="space-top-small"></div>
                     <div class="row">
+                        <div id="msg"></div>
                         <table class="table table-responsive table-bordered" id="category-list-table">
                             <thead>
                             <tr>
@@ -85,23 +86,22 @@ START SITE HERE
             var contentId = $(this).data('contentid');
             var status = $(this).val();
             console.log(contentId,status);
-            return;
-            api.kachha.changeCourseStatus({
-                data: {
-                    class_uuid: class_uuid,
-                    course_uuid: course_uuid,
-                    is_ready: is_ready === 'true'
+            var model = {
+                id : contentId,
+                status: status
+            };
+            $.ajax({
+                method: 'POST',
+                data: model,
+                url: 'post/change/status/',
+                success: function (data) {
+                    $('#msg').html('<p class="alert alert-success"><strong>'+ data.msg +'</strong></p>');
+                    console.log(data);
                 },
-                success: function(res) {
-                    $('#publish-success-msg')
-                        .show()
-                        .html('Course has been ' + (is_ready === 'true' ? 'published' : 'unpublished') + ' successfully');
-                    setTimeout(function() {
-                        $('#publish-success-msg')
-                            .fadeOut()
-                    }, 3000)
+                error: function(err) {
+                    $('#msg').html('<p class="alert alert-danger"><strong>Something went wrong, please try again!</strong></p>');
                 }
-            })
+            });
         }
     })
 </script>
