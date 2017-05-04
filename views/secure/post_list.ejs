@@ -47,8 +47,8 @@ START SITE HERE
                                 <td><%= blog ? blog.category.categoryName : 'Not Set' %></td>
                                 <td>
                                     <select class="form-control change-content-status" data-contentid="<%= blog.id %>">
-                                        <option value="true">Publish</option>
-                                        <option value="false">Draft</option>
+                                        <option value="true" <%= blog.status === 'Publish' ? 'selected' : '' %>>Publish</option>
+                                        <option value="false" <%= blog.status === 'Draft' ? 'selected' : '' %>>Draft</option>
                                     </select></td>
                                 <td>
                                     <a href="/post_list/<%= blog.id%>"><button class="btn btn-default btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a>

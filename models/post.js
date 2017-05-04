@@ -16,7 +16,7 @@ const postSchema = mongoose.Schema({
     },
     status : {
         type : String,
-        default : 'draft'
+        default : 'Draft'
     },
     content : {
         type : String
