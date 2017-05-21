@@ -22,6 +22,18 @@ function checkPerm (req, res, next) {
     }
     Role.findById(req.session.admin.user.role, function(err, doc) {
         if (err) throw err;
+        var perm = JSON.stringify(doc.permissions);
+        var result = doc.permissions.toString();
+        var aa = JSON.parse(perm);
+        console.log(aa);
+        if(result == 'read') {
+            console.log('read');
+        }
+        return;
+        for(var k in perm) {
+            console.log(k, perm[k]);
+        }
+        return;
         (doc.permissions).forEach(function(p) {
             console.log(p);
             if(p !== 'manager'){
@@ -125,7 +137,7 @@ router.get('/users/add', checkAuth, function (req,res) {
     });
 });
 
-router.get('/profile', checkAuth, function(req,res) {
+router.get('/profile', checkAuth, checkPerm, function(req,res) {
     var data = {
         user : req.session.admin.user
     }
@@ -249,11 +261,10 @@ router.get('/blog/:seoUrl',function (req,res) {
                                     } else {
                                         var data = {
                                             blog: doc,
-                                            cateogry : category,
+                                            category : category,
                                             articles : latestArticles,
                                             author : author
                                         }
-                                        console.log(data);
                                         res.render('post_details', data)
                                     }
                                 });
@@ -263,16 +274,6 @@ router.get('/blog/:seoUrl',function (req,res) {
                 });
             }
         });
-    /*    .exec(function (err, doc) {
-            if(err){
-                res.json({success : false, msg : 'Failed to list content!'});
-            } else {
-                var data = {
-                    blog: doc
-                }
-                res.render('post_details', data)
-            }
-        }); */
 });
 
 router.get('/:id',function (req,res) {
@@ -299,20 +300,6 @@ router.get('/:id',function (req,res) {
         });
 });
 
-
-
-router.post('/admin/login', function(req, res, next) {
-    if(req.body && req.body.username == 'wilson' && req.body.password == '12345'){
-        req.session.admin = {
-            token: 'de76af66229032dda',
-            datetime: Date.now()
-        }
-        res.redirect('/profile')
-    } else {
-        req.flash('error', 'Invalid username or password');
-        res.redirect('/admin')
-    }
-});
 
 router.get('/admin/logout', checkAuth, function(req,res){
     req.session.destroy();

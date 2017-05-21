@@ -47,19 +47,6 @@ router.post('/auth',function (req,res) {
     });
 });
 
-router.post('/login', function(req, res, next) {
-    if(req.body && req.body.username == 'wilson' && req.body.password == '12345'){
-        req.session.admin = {
-            token: 'de76af66229032dda',
-            datetime: Date.now()
-        }
-        res.redirect('/profile')
-    } else {
-        req.flash('error', 'Invalid username or password');
-        res.redirect('/admin')
-    }
-});
-
 router.get('/logout', checkAuth, function(req,res){
     req.session.destroy();
     req.session.admin = null;
