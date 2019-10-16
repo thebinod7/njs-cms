@@ -21,7 +21,8 @@
     "morgan": "*",
     "multer": "*",
     "nodemailer": "^3.1.4",
-    "nodemon": "*"
+    "nodemon": "*",
+    "swagger-ui-express": "^4.1.2"
   },
   "repository": {
     "type": "git",
